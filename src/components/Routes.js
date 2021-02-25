@@ -36,7 +36,7 @@ function Routes() {
             <PrivateRoute path="/pronto" component={Pronto} />
             <PrivateRoute path="/entregue" component={Entregue} />
 
-            <PrivateRoute component={Pagina404}/>
+            <Route component={Pagina404}/>
         </Switch>
    
     );
