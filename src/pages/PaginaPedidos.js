@@ -189,15 +189,6 @@ function PaginaPedidos(){
               <Loading />
             ) : (
                 <>
-                {/* <input 
-                    type="button" 
-                    value="Voltar" 
-                    onClick={() => {
-                        history.push({
-                        pathname: `/salao`,
-                        })
-                    }}
-                /> */}
 
                 <section className="menu-escolha">
                 <section className="buttons-menu-escolha">
