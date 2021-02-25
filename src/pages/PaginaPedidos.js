@@ -164,22 +164,24 @@ function PaginaPedidos(){
     <>
       {isModalVisible ? (<ErrorModal onClose={() => setIsModalVisible(false)}>{errorMessage}</ErrorModal>) : null}
       <Header />
+      <div className="align-button">
+        <input
+          className="button-back-table" 
+          type="button" 
+          value="Escolher Mesa" 
+          onClick={() => {
+            history.push({
+            pathname: `/salao`,
+            })
+          }}
+        />
+      </div>
         <main className="pagina-pedido">
             {loading ? 
             (
               <Loading />
             ) : (
                 <>
-                <input 
-                    type="button" 
-                    value="Voltar" 
-                    onClick={() => {
-                        history.push({
-                        pathname: `/salao`,
-                        })
-                    }}
-                />
-
                 <section className="menu-escolha">
                 <section className="buttons-menu-escolha">
                     <button className="button-menu-escolha" onClick={() => setMenus(true)}>Café da Manhã</button>
@@ -274,7 +276,8 @@ function PaginaPedidos(){
                         {resumoPedido.map((item, index) => (
                           <>
                             <li className="item-lista-pedido" key={index}>
-                                <label>{item.qtd}x {item.name} R${item.price*item.qtd}</label>
+                                <label>{item.name} R${item.price*item.qtd}</label>
+                                <section className="quantidade-lista-pedido">
                                 <input
                                     className="button-manipular-qtd"
                                     id="diminuir-qtd"
@@ -314,6 +317,7 @@ function PaginaPedidos(){
                                       setResumoPedido([...resumoPedido]);
                                     }}
                                 />
+                                </section>
                             </li>
                           </>
                         ))}

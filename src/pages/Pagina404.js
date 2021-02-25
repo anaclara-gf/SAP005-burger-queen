@@ -3,7 +3,6 @@ import React from "react";
 import { useHistory } from "react-router-dom";
 import Footer from "../components/Footer";
 import Logo from "../components/Logo";
-import Header from '../components/Header';
 
 function Pagina404() {
     const history = useHistory()

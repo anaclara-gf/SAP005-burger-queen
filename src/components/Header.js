@@ -21,28 +21,36 @@ function Header() {
                     onClick={(event) => handleNavigate(event, '/salao')}/>
                 <section className="header-input">
                     <input 
-                        id="fazer-pedido"
+                        id="iniciar-um-pedido"
                         type="radio"
                         name="pages"
                         value="/salao"
                         onChange={(event) => handleNavigate(event, event.target.value)}
-                    ></input>
-                    <label for="fazer-pedido">Fazer Pedido</label>
+                    />
+                    <label for="iniciar-um-pedido">Iniciar um Pedido</label>
                     <input
-                        id="lista-de-pedidos"
+                        id="pedidos-em-andamento"
                         type="radio"
                         name="pages"
-                        value="/lista"
+                        value="/andamento"
                         onChange={(event) => handleNavigate(event, event.target.value)}
-                    ></input>
-                    <label for="lista-de-pedidos">Lista de Pedidos</label>
+                    />
+                    <label for="pedidos-em-andamento">Pedidos em Andamento</label>
+                    <input 
+                        id="pedidos-prontos"
+                        type="radio"
+                        name="pages"
+                        value="/pronto"
+                        onChange={(event) => handleNavigate(event, event.target.value)}
+                    />
+                    <label for="pedidos-prontos">Pedidos Prontos</label>
                     <input 
                         id="pedidos-entregues"
                         type="radio"
                         name="pages"
                         value="/entregue"
                         onChange={(event) => handleNavigate(event, event.target.value)}
-                    ></input>
+                    />
                     <label for="pedidos-entregues">Pedidos Entregues</label>
                 </section>
                 <img className="img-header" alt="imagem-sair" src={logout} 
