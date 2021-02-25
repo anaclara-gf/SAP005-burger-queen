@@ -78,51 +78,55 @@ function PaginaPedidos(){
     function extras() {
         return (
           <>
-            <section className="opcoes-burguer">
-              <p className="titulo-extras">Hambúrguer</p>
-              <section className="img-input-extras">
-              {hamburguers.map(tipoHamburguer => (
-                <>
-                  <input
-                    key={tipoHamburguer.name}
-                    type="radio"
-                    name="escolher-hamburguer"
-                    id={tipoHamburguer.name}
-                    onChange={(event) => {
-                      selectedBurger.flavor = event.currentTarget.id;
-                      setSelectedBurger({...selectedBurger});
-                    }}
-                  />
-                  <label for={tipoHamburguer.name}>
-                    <img className="img-button-extra" alt={tipoHamburguer.name} src={tipoHamburguer.img} />
-                  {tipoHamburguer.label}</label>
-                </>
-              ))}
+            <div className="escolhas-extras">
+              <section className="opcoes-burguer">
+                <p className="titulo-extras">Hambúrguer</p>
+                <section className="img-input-extras">
+                {hamburguers.map(tipoHamburguer => (
+                  <>
+                    <input
+                      key={tipoHamburguer.name}
+                      type="radio"
+                      name="escolher-hamburguer"
+                      id={tipoHamburguer.name}
+                      onClick={(event) => {
+                        selectedBurger.flavor = event.currentTarget.id;
+                        setSelectedBurger({...selectedBurger});
+                      }}
+                    />
+                    <label for={tipoHamburguer.name}>
+                      <img className="img-button-extra" alt={tipoHamburguer.name} src={tipoHamburguer.img} />
+                    {tipoHamburguer.label}</label>
+                  </>
+                ))}
+                </section>
               </section>
-            </section>
-            <section className="opcoes-adicionais">
-              <p className="titulo-extras">Adicionais R$1</p>
-              <section className="img-input-extras">
-              {adicionais.map((tipoAdicional, index) => (
-                <>
-                  <input
-                    key={index}
-                    type="radio"
-                    name="escolher-adicional"
-                    id={tipoAdicional.name}
-                    onChange={(event) => {
-                      selectedBurger.complement = event.currentTarget.id;
-                      setSelectedBurger({...selectedBurger});
-                    }}
-                  />
-                  <label for={tipoAdicional.name} key={index}>
-                    <img className="img-button-extra" alt={tipoAdicional.name} src={tipoAdicional.img} />
-                  {tipoAdicional.name}</label>
-                </> 
-              ))}
+              <section className="opcoes-adicionais">
+                <p className="titulo-extras">Adicionais R$1</p>
+                <section className="img-input-extras">
+                {adicionais.map((tipoAdicional, index) => (
+                  <>
+                    <input
+                      key={index}
+                      type="radio"
+                      name="escolher-adicional"
+                      id={tipoAdicional.name}
+                      onChange={(event) => {
+                        selectedBurger.complement = event.currentTarget.id;
+                        setSelectedBurger({...selectedBurger});
+                      }}
+                    />
+                    <label for={tipoAdicional.name} key={index}>
+                      <img className="img-button-extra" alt={tipoAdicional.name} src={tipoAdicional.img} />
+                    {tipoAdicional.name}</label>
+                  </> 
+                ))}
+                </section>
               </section>
-            </section>
+            </div>
+            
             <input 
+              className="button-ok-extras"
               type="button"
               value="OK"
               onClick={(event) => {
@@ -132,6 +136,7 @@ function PaginaPedidos(){
                   }
                 })
                 setOpenExtrasBurgerSimples(false);
+                setOpenExtrasBurgerDuplo(false);
                 event.currentTarget.parentNode.parentNode.querySelector(".button-adicionar").classList.remove("rotate");
               }}
             />
@@ -166,13 +171,13 @@ function PaginaPedidos(){
         return array.reduce((total, item) => total + (item.qtd*item.price), 0);
     }
 
-    React.useEffect(() => {
-        console.log(resumoPedido);
-        console.log(fazerPedido);
-        // console.log(selectedBurger);
-        console.log(listaCompletaDeProdutos);
+    // React.useEffect(() => {
+    //     console.log(resumoPedido);
+    //     console.log(fazerPedido);
+    //     console.log(selectedBurger);
+    //     console.log(listaCompletaDeProdutos);
 
-      }, [resumoPedido, fazerPedido, selectedBurger, listaCompletaDeProdutos])
+    //   }, [resumoPedido, fazerPedido, selectedBurger, listaCompletaDeProdutos])
 
   return (
     <>
@@ -205,7 +210,7 @@ function PaginaPedidos(){
                     <ul className="lista-menu">
                         {menuCafe.map((produto, index) => (
                             <li key={index} className="item-lista-menu">
-                                <label>{`${produto.name} R$${produto.price} `}</label>
+                                <label>{`${produto.name} ${Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(produto.price)}`}</label>
                                 <input
                                     className="button-adicionar"
                                     id={produto.name}
@@ -232,7 +237,7 @@ function PaginaPedidos(){
                       <ul className="lista-menu">
                         {menuAlmoco.map((produto, index) => (
                           <li key={index} className="item-lista-menu">
-                            <label>{`${produto.name} R$${produto.price}`}</label>
+                            <label>{`${produto.name} ${Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(produto.price)}`}</label>
                             <input
                               className="button-adicionar"
                               id={produto.name}
@@ -291,7 +296,7 @@ function PaginaPedidos(){
                             <li className="item-lista-pedido" key={index}>
                                 <label>
                                   {typeof item.name === "string" ? item.name : item.name.map((item) => <><label>{item.name}</label> <label>{item.flavor}</label> <label>{item.complement}</label></> )} 
-                                  R${item.price*item.qtd}
+                                  {Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(item.price*item.qtd)}
                                 </label>
                                 <input
                                     className="button-manipular-qtd"
@@ -336,7 +341,7 @@ function PaginaPedidos(){
                           </>
                         ))}
                         </ul>
-                        <p className="total-resumo-pedido">TOTAL: R${somarPrecoTotal(resumoPedido)}</p>
+                        <p className="total-resumo-pedido">TOTAL: {Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(somarPrecoTotal(resumoPedido))}</p>
                         <section className="buttons-resumo-pedido">
                           <input className="button-resumo-pedido"
                             type="button"
@@ -363,6 +368,8 @@ function PaginaPedidos(){
                                     .then(data => {
                                       if(data.id !== undefined){
                                         console.log(data);
+                                        setResumoPedido([]);
+                                        document.querySelector(".cliente-resumo-pedido").value = "";
                                       } else {
                                         setIsModalVisible(true)
                                         setErrorMessage(`${data.message}`)
