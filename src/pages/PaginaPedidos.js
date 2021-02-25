@@ -89,8 +89,8 @@ function PaginaPedidos(){
                     name="escolher-hamburguer"
                     id={tipoHamburguer.name}
                     onChange={(event) => {
-                      setSelectedBurger(selectedBurger.flavor = event.currentTarget.id);
-                      setSelectedBurger({...selectedBurger, flavor: event.currentTarget.id});
+                      selectedBurger.flavor = event.currentTarget.id;
+                      setSelectedBurger({...selectedBurger});
                     }}
                   />
                   <label for={tipoHamburguer.name} >
@@ -111,7 +111,8 @@ function PaginaPedidos(){
                     name="escolher-adicional"
                     id={tipoAdicional.name}
                     onChange={(event) => {
-                      setSelectedBurger({...selectedBurger, complement: event.currentTarget.id});
+                      selectedBurger.complement = event.currentTarget.id;
+                      setSelectedBurger({...selectedBurger});
                     }}
                   />
                   <label for={tipoAdicional.name} >
@@ -121,6 +122,19 @@ function PaginaPedidos(){
               ))}
               </section>
             </section>
+            <input 
+              type="button"
+              value="OK"
+              onClick={(event) => {
+                listaCompletaDeProdutos.filter(produto => {
+                  if(produto.name === selectedBurger.name && produto.flavor === selectedBurger.flavor && produto.complement === selectedBurger.complement) {
+                    setResumoPedido([...resumoPedido, {"id": produto.id, "name": [{"name": produto.name, "flavor": produto.flavor, "complement": produto.complement}], "price": produto.price, "qtd": 1}]);
+                  }
+                })
+                setOpenExtrasBurgerSimples(false);
+                event.currentTarget.parentNode.parentNode.querySelector(".button-adicionar").classList.remove("rotate");
+              }}
+            />
           </>
         )
     }
@@ -154,9 +168,11 @@ function PaginaPedidos(){
 
     React.useEffect(() => {
         console.log(resumoPedido);
-        // console.log(fazerPedido)
+        console.log(fazerPedido);
+        // console.log(selectedBurger);
+        console.log(listaCompletaDeProdutos);
 
-      }, [resumoPedido, fazerPedido])
+      }, [resumoPedido, fazerPedido, selectedBurger, listaCompletaDeProdutos])
 
   return (
     <>
@@ -168,7 +184,7 @@ function PaginaPedidos(){
               <Loading />
             ) : (
                 <>
-                <input 
+                {/* <input 
                     type="button" 
                     value="Voltar" 
                     onClick={() => {
@@ -176,7 +192,7 @@ function PaginaPedidos(){
                         pathname: `/salao`,
                         })
                     }}
-                />
+                /> */}
 
                 <section className="menu-escolha">
                 <section className="buttons-menu-escolha">
@@ -227,8 +243,9 @@ function PaginaPedidos(){
                               onClick={(event) => {
                                 handleExtras(event);
                                 if(produto.name === "Hambúrguer simples" || produto.name === "Hambúrguer duplo"){
-                                  setSelectedBurger(selectedBurger.name = event.currentTarget.id);
-                                  setSelectedBurger({...selectedBurger, name: event.currentTarget.id});
+                                  selectedBurger.name = menuAlmoco[index].name;
+                                  setSelectedBurger({...selectedBurger});
+
                                 } else {
                                   if(!resumoPedido.some(pedido => pedido.name === menuAlmoco[index].name)){
                                     setResumoPedido([...resumoPedido, {"id": menuAlmoco[index].id, "name": menuAlmoco[index].name, "price": menuAlmoco[index].price, "qtd": 1}]);
@@ -272,7 +289,10 @@ function PaginaPedidos(){
                         {resumoPedido.map((item, index) => (
                           <>
                             <li className="item-lista-pedido" key={index}>
-                                <label>{item.qtd}x {item.name} R${item.price*item.qtd}</label>
+                                <label>
+                                  {typeof item.name === "string" ? item.name : item.name.map((item) => <><label>{item.name}</label> <label>{item.flavor}</label> <label>{item.complement}</label></> )} 
+                                  R${item.price*item.qtd}
+                                </label>
                                 <input
                                     className="button-manipular-qtd"
                                     id="diminuir-qtd"
