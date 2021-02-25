@@ -7,6 +7,7 @@ import Loading from '../components/Loading';
 
 function Andamento() {
   let token = localStorage.getItem("token");
+  const [pedidos, setPedidos] = useState([])
   const [pending, setPending] = useState([])
   const [loading, setLoading] = useState(true);
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -24,12 +25,16 @@ function Andamento() {
     fetch('https://lab-api-bq.herokuapp.com/orders', requestOptions)
         .then(response => response.json())
         .then(data => {
-          setPending(data)
+          setPedidos(data)
           setLoading(false)
         })    
   }, [token]);
 
-  console.log(pending)
+  // useEffect(() => {
+  //   console.log(pedidos)
+  //   console.log(pending)
+  // }, [pedidos, pending])
+
     return (
         <>
           {isModalVisible ? (<ErrorModal onClose={() => setIsModalVisible(false)}>{errorMessage}</ErrorModal>) : null}
@@ -39,7 +44,17 @@ function Andamento() {
             (
               <Loading />
             ) : (
+              <div>
+                {/* {pedidos.map (pedido => {
+                  if(pedido.status === "pending"){
+                    setPending([...pending, pedido])
+                  }
+                  
+                })
+
+              } */}
               <p>Pedidos em Andamento</p>
+              </div>
             )}
             </main>
           <Footer />

@@ -76,8 +76,9 @@ function PaginaPedidos(){
     const adicionais = [{name: "ovo", img: Ovo}, {name:"queijo", img: Queijo}];
 
     function extras() {
-        return (
-          <>
+      return (
+        <>
+          <div className="escolhas-extras">
             <section className="opcoes-burguer">
               <p className="titulo-extras">Hambúrguer</p>
               <section className="img-input-extras">
@@ -88,10 +89,9 @@ function PaginaPedidos(){
                     type="radio"
                     name="escolher-hamburguer"
                     id={tipoHamburguer.name}
-                    onChange={(event) => {
-                      console.log(event.target.id);
-                      setSelectedBurger(selectedBurger.flavor = event.currentTarget.id);
-                      setSelectedBurger({...selectedBurger, flavor: event.currentTarget.id});
+                    onClick={(event) => {
+                      selectedBurger.flavor = event.currentTarget.id;
+                      setSelectedBurger({...selectedBurger});
                     }}
                   />
                   <label for={tipoHamburguer.name}>
@@ -112,8 +112,8 @@ function PaginaPedidos(){
                     name="escolher-adicional"
                     id={tipoAdicional.name}
                     onChange={(event) => {
-                      console.log(event.target.id)
-                      setSelectedBurger({...selectedBurger, complement: event.currentTarget.id});
+                      selectedBurger.complement = event.currentTarget.id;
+                      setSelectedBurger({...selectedBurger});
                     }}
                   />
                   <label for={tipoAdicional.name} key={index}>
@@ -123,8 +123,25 @@ function PaginaPedidos(){
               ))}
               </section>
             </section>
-          </>
-        )
+          </div>
+          
+          <input 
+            className="button-ok-extras"
+            type="button"
+            value="OK"
+            onClick={(event) => {
+              listaCompletaDeProdutos.filter(produto => {
+                if(produto.name === selectedBurger.name && produto.flavor === selectedBurger.flavor && produto.complement === selectedBurger.complement) {
+                  setResumoPedido([...resumoPedido, {"id": produto.id, "name": [{"name": produto.name, "flavor": produto.flavor, "complement": produto.complement}], "price": produto.price, "qtd": 1}]);
+                }
+              })
+              setOpenExtrasBurgerSimples(false);
+              setOpenExtrasBurgerDuplo(false);
+              event.currentTarget.parentNode.parentNode.querySelector(".button-adicionar").classList.remove("rotate");
+            }}
+          />
+        </>
+      )
     }
 
     function handleExtras(event) {
@@ -153,12 +170,6 @@ function PaginaPedidos(){
     function somarPrecoTotal(array) {
         return array.reduce((total, item) => total + (item.qtd*item.price), 0);
     }
-
-    React.useEffect(() => {
-        console.log(resumoPedido);
-        // console.log(fazerPedido)
-
-      }, [resumoPedido, fazerPedido])
 
   return (
     <>
@@ -194,7 +205,7 @@ function PaginaPedidos(){
                     <ul className="lista-menu">
                         {menuCafe.map((produto, index) => (
                             <li key={index} className="item-lista-menu">
-                                <label>{`${produto.name} R$${produto.price} `}</label>
+                                <label>{`${produto.name} ${Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(produto.price)}`}</label>
                                 <input
                                     className="button-adicionar"
                                     id={produto.name}
@@ -221,7 +232,7 @@ function PaginaPedidos(){
                       <ul className="lista-menu">
                         {menuAlmoco.map((produto, index) => (
                           <li key={index} className="item-lista-menu">
-                            <label>{`${produto.name} R$${produto.price}`}</label>
+                            <label>{`${produto.name} ${Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(produto.price)}`}</label>
                             <input
                               className="button-adicionar"
                               id={produto.name}
@@ -277,7 +288,10 @@ function PaginaPedidos(){
                         {resumoPedido.map((item, index) => (
                           <>
                             <li className="item-lista-pedido" key={index}>
-                                <label>{item.name} R${item.price*item.qtd}</label>
+                                <label>
+                                  {typeof item.name === "string" ? item.name : item.name.map((item) => <><label>{item.name}</label> <label>{item.flavor}</label> <label>{item.complement}</label></> )} 
+                                  {Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(item.price*item.qtd)}
+                                </label>
                                 <section className="quantidade-lista-pedido">
                                 <input
                                     className="button-manipular-qtd"
@@ -323,7 +337,7 @@ function PaginaPedidos(){
                           </>
                         ))}
                         </ul>
-                        <p className="total-resumo-pedido">TOTAL: R${somarPrecoTotal(resumoPedido)}</p>
+                        <p className="total-resumo-pedido">TOTAL: {Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(somarPrecoTotal(resumoPedido))}</p>
                         <section className="buttons-resumo-pedido">
                           <input className="button-resumo-pedido"
                             type="button"
@@ -350,6 +364,8 @@ function PaginaPedidos(){
                                     .then(data => {
                                       if(data.id !== undefined){
                                         console.log(data);
+                                        setResumoPedido([]);
+                                        document.querySelector(".cliente-resumo-pedido").value = "";
                                       } else {
                                         setIsModalVisible(true)
                                         setErrorMessage(`${data.message}`)
