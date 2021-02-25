@@ -30,7 +30,7 @@ function Routes() {
             <PrivateRoute path="/salao" component={Salon}/>
             <PrivateRoute path="/pedidos/:mesa" component={PaginaPedidos} />
 
-            <PrivateRoute component={Pagina404}/>
+            <Route component={Pagina404}/>
         </Switch>
    
     );
