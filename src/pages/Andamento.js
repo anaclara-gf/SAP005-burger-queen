@@ -4,6 +4,10 @@ import Footer from "../components/Footer";
 import Header from '../components/Header';
 import ErrorModal from '../components/ModalError';
 import Loading from '../components/Loading';
+import Logo from "../components/Logo";
+
+const role = localStorage.getItem("role");
+
 
 function Andamento() {
   let token = localStorage.getItem("token");
@@ -38,7 +42,10 @@ function Andamento() {
     return (
         <>
           {isModalVisible ? (<ErrorModal onClose={() => setIsModalVisible(false)}>{errorMessage}</ErrorModal>) : null}
-          <Header />
+          
+        {role === "cozinha" ? (
+          <>
+            <Header />
             <main >
             {loading ? 
             (
@@ -57,7 +64,19 @@ function Andamento() {
               </div>
             )}
             </main>
-          <Footer />
+            <Footer />
+          </>
+        ) : (
+          <>
+            <Header />
+            <main className="acessonegado-container">
+                <p className="acessonegado-title">Ops!!!</p>
+                <p className="acessonegado-message">Você não pode acessar essa página!</p>
+                <Logo />
+            </main>
+            <Footer />
+          </>
+            )}
         </>
     );
 }

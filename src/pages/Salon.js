@@ -1,8 +1,12 @@
 import '../style/salon.css'
+import '../style/pagina404.css'
 import React from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Mesas from '../components/Mesas';
+import Logo from "../components/Logo";
+
+const role = localStorage.getItem("role");
 
 const Salon = () => {
     const numeroDeMesas = 20;
@@ -13,20 +17,35 @@ const Salon = () => {
     }
 
     return (
-      <div className="Salon">
-        <Header/>
-        <main>
-          <p className="buttons-header">Escolha a mesa para qual deseja fazer o pedido:</p>
-          <div className="mesas">
-            {mesas.map((mesa) => (
-              <Mesas 
-                mesa={mesa}
-              />
-            ))}
+      <>
+        {role === "salao" ? (
+          <div className="Salon">
+            <Header/>
+            <main>
+              <p className="buttons-header">Escolha a mesa para qual deseja fazer o pedido:</p>
+              <div className="mesas">
+                {mesas.map((mesa) => (
+                  <Mesas 
+                    mesa={mesa}
+                  />
+                ))}
+              </div>
+            </main>
+            <Footer/>
           </div>
-        </main>
-        <Footer/>
-      </div>
+        ) : (
+          <>
+            <Header />
+            <main className="acessonegado-container">
+                <p className="acessonegado-title">Ops!!!</p>
+                <p className="acessonegado-message">Você não pode acessar essa página!</p>
+                <Logo />
+            </main>
+            <Footer />
+            </>
+        )}
+      </>
+      
     );
 };
 

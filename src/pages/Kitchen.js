@@ -4,6 +4,9 @@ import Footer from "../components/Footer";
 import Header from '../components/Header';
 import ErrorModal from '../components/ModalError';
 import Loading from '../components/Loading';
+import Logo from "../components/Logo";
+
+const role = localStorage.getItem("role");
 
 function Kitchen() {
   let token = localStorage.getItem("token");
@@ -36,8 +39,11 @@ function Kitchen() {
   console.log(pending)
 
     return (
+      <>
+      {isModalVisible ? (<ErrorModal onClose={() => setIsModalVisible(false)}>{errorMessage}</ErrorModal>) : null}
+          
+      {role === "cozinha" ? (
         <>
-          {isModalVisible ? (<ErrorModal onClose={() => setIsModalVisible(false)}>{errorMessage}</ErrorModal>) : null}
           <Header />
             <main >
             {loading ? 
@@ -59,7 +65,20 @@ function Kitchen() {
               </div>
             )}
             </main>
+            
           <Footer />
+        </>
+          ) : (
+            <>
+              <Header />
+              <main className="acessonegado-container">
+                  <p className="acessonegado-title">Ops!!!</p>
+                  <p className="acessonegado-message">Você não pode acessar essa página!</p>
+                  <Logo />
+              </main>
+              <Footer />
+              </>
+          )}
         </>
     );
 }
