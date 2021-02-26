@@ -5,9 +5,9 @@ import Header from '../components/Header';
 import ErrorModal from '../components/ModalError';
 import Loading from '../components/Loading';
 
-function Kitchen() {
+function Andamento() {
   let token = localStorage.getItem("token");
-  // const [allOrders, setAllOrders] = useState([])
+  const [pedidos, setPedidos] = useState([])
   const [pending, setPending] = useState([])
   const [loading, setLoading] = useState(true);
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -25,15 +25,15 @@ function Kitchen() {
     fetch('https://lab-api-bq.herokuapp.com/orders', requestOptions)
         .then(response => response.json())
         .then(data => {
-          if (data) {
-            const allOrders = data
-            setPending(allOrders.filter((pedido) => pedido.status.includes("pending")))
-          }
-          setLoading(false) 
-        })  
+          setPedidos(data)
+          setLoading(false)
+        })    
   }, [token]);
 
-  console.log(pending)
+  // useEffect(() => {
+  //   console.log(pedidos)
+  //   console.log(pending)
+  // }, [pedidos, pending])
 
     return (
         <>
@@ -45,16 +45,14 @@ function Kitchen() {
               <Loading />
             ) : (
               <div>
-                {pending
-                  .sort((a, b) => (a.id > b.id ? 1 : -1))
-                  .map((pedido, index) => (
-                    
-                    <div key={index}>ID: {pedido.id} Nome do Cliente: {pedido.client_name} Mesa:{pedido.table}</div>
-                  ))
+                {/* {pedidos.map (pedido => {
+                  if(pedido.status === "pending"){
+                    setPending([...pending, pedido])
+                  }
+                  
+                })
 
-
-                }
-       
+              } */}
               <p>Pedidos em Andamento</p>
               </div>
             )}
@@ -64,4 +62,4 @@ function Kitchen() {
     );
 }
 
-export default Kitchen;
+export default Andamento;

@@ -1,7 +1,7 @@
 /* eslint-disable array-callback-return */
 import '../style/paginapedidos.css'
 import React, { useEffect, useState } from 'react';
-import { useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import ErrorModal from '../components/ModalError';
@@ -19,6 +19,7 @@ const role = localStorage.getItem("role");
 
 function PaginaPedidos(){
     const {mesa} = useParams();
+    let history = useHistory();
     let token = localStorage.getItem("token");
     const atendente = localStorage.getItem("atendente");
     const [loading, setLoading] = useState(true);
@@ -79,31 +80,31 @@ function PaginaPedidos(){
     const adicionais = [{name: "ovo", img: Ovo}, {name:"queijo", img: Queijo}];
 
     function extras() {
-        return (
-          <>
-            <div className="escolhas-extras">
-              <section className="opcoes-burguer">
-                <p className="titulo-extras">Hambúrguer</p>
-                <section className="img-input-extras">
-                {hamburguers.map(tipoHamburguer => (
-                  <>
-                    <input
-                      key={tipoHamburguer.name}
-                      type="radio"
-                      name="escolher-hamburguer"
-                      id={tipoHamburguer.name}
-                      onClick={(event) => {
-                        selectedBurger.flavor = event.currentTarget.id;
-                        setSelectedBurger({...selectedBurger});
-                      }}
-                    />
-                    <label for={tipoHamburguer.name}>
-                      <img className="img-button-extra" alt={tipoHamburguer.name} src={tipoHamburguer.img} />
-                    {tipoHamburguer.label}</label>
-                  </>
-                ))}
-                </section>
+      return (
+        <>
+          <div className="escolhas-extras">
+            <section className="opcoes-burguer">
+              <p className="titulo-extras">Hambúrguer</p>
+              <section className="img-input-extras">
+              {hamburguers.map(tipoHamburguer => (
+                <>
+                  <input
+                    key={tipoHamburguer.name}
+                    type="radio"
+                    name="escolher-hamburguer"
+                    id={tipoHamburguer.name}
+                    onClick={(event) => {
+                      selectedBurger.flavor = event.currentTarget.id;
+                      setSelectedBurger({...selectedBurger});
+                    }}
+                  />
+                  <label for={tipoHamburguer.name}>
+                    <img className="img-button-extra" alt={tipoHamburguer.name} src={tipoHamburguer.img} />
+                  {tipoHamburguer.label}</label>
+                </>
+              ))}
               </section>
+            </section>
               <section className="opcoes-adicionais">
                 <p className="titulo-extras">Adicionais R$1</p>
                 <section className="img-input-extras">
@@ -124,10 +125,10 @@ function PaginaPedidos(){
                     {tipoAdicional.name}</label>
                   </> 
                 ))}
-                </section>
               </section>
-            </div>
-            
+            </section>
+          </div>
+
             <input 
               className="button-ok-extras"
               type="button"
@@ -180,20 +181,24 @@ function PaginaPedidos(){
         return array.reduce((total, item) => total + (item.qtd*item.price), 0);
     }
 
-    // React.useEffect(() => {
-    //     console.log(resumoPedido);
-    //     console.log(fazerPedido);
-    //     console.log(selectedBurger);
-    //     console.log(listaCompletaDeProdutos);
-
-    //   }, [resumoPedido, fazerPedido, selectedBurger, listaCompletaDeProdutos])
-
   return (
     <>
       {isModalVisible ? (<ErrorModal onClose={() => setIsModalVisible(false)}>{errorMessage}</ErrorModal>) : null}
       {role === "salao" ? (
       <>
         <Header />
+        <div className="align-button">
+          <input
+            className="button-back-table" 
+            type="button" 
+            value="Escolher Mesa" 
+            onClick={() => {
+              history.push({
+              pathname: `/salao`,
+              })
+            }}
+          />
+        </div>
           <main className="pagina-pedido">
               {loading ? 
               (
