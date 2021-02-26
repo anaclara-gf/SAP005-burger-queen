@@ -14,18 +14,40 @@
     color: #383636;
 }
 
+.acessonegado-container {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    color: #383636;
+}
+
 .error404-title {
     font-family: "ChunkFive";
     font-size: 36px;
     letter-spacing: 0.1rem;
     text-transform: uppercase;
+}
 
+.acessonegado-title {
+    font-family: "ChunkFive";
+    font-size: 36px;
+    letter-spacing: 0.1rem;
+    text-transform: uppercase;
+    margin: 2rem 0;
 }
 
 .error404-message {
     font-size: 20px;
     letter-spacing: 0.1rem;
     margin: 0.2rem 0;
+}
+
+.acessonegado-message {
+    font-size: 20px;
+    letter-spacing: 0.1rem;
+    margin: 0.2rem 0 4rem 0;
 }
 
 .error404-button {

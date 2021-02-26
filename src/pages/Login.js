@@ -29,6 +29,7 @@ function Login(props) {
             localStorage.setItem("token", data.token);
             localStorage.setItem("userId", data.id);
             localStorage.setItem("atendente", data.name)
+            localStorage.setItem("role", data.role)
             history.push({
               pathname: `/${data.role}`,
             });
