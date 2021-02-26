@@ -32,7 +32,7 @@ function Header() {
                         id="pedidos-em-andamento"
                         type="radio"
                         name="pages"
-                        value="/andamento"
+                        value="/cozinha"
                         onChange={(event) => handleNavigate(event, event.target.value)}
                     />
                     <label for="pedidos-em-andamento">Pedidos em Andamento</label>
