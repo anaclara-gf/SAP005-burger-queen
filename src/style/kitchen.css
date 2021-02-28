@@ -1,0 +1,4 @@
+.pedidos-cozinha {
+  display: flex;
+  justify-content: space-around;
+}

@@ -6,9 +6,8 @@ import Kitchen from '../pages/Kitchen';
 import Salon from '../pages/Salon';
 import Pagina404 from '../pages/Pagina404';
 import PaginaPedidos from '../pages/PaginaPedidos';
-import Andamento from "../pages/Andamento";
-import Pronto from "../pages/Pronto";
-import Entregue from "../pages/Entregue";
+import Done from "../pages/Done";
+import Delivered from "../pages/Delivered";
 
 const PrivateRoute = ({component: Component, ...rest }) => (
     <Route 
@@ -32,9 +31,8 @@ function Routes() {
             <PrivateRoute path="/cozinha" component={Kitchen}/>
             <PrivateRoute path="/salao" component={Salon}/>
             <PrivateRoute path="/pedidos/:mesa" component={PaginaPedidos} />
-            <PrivateRoute path="/andamento" component={Andamento} />
-            <PrivateRoute path="/pronto" component={Pronto} />
-            <PrivateRoute path="/entregue" component={Entregue} />
+            <PrivateRoute path="/pronto" component={Done} />
+            <PrivateRoute path="/entregue" component={Delivered} />
 
             <Route component={Pagina404}/>
         </Switch>
