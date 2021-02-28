@@ -5,6 +5,9 @@ import Header from '../components/Header';
 import ErrorModal from '../components/ModalError';
 import Loading from '../components/Loading';
 import CardsOrders from '../components/cardsOrderTemplate';
+import Logo from "../components/Logo";
+
+const role = localStorage.getItem("role");
 
 function Delivered() {
   let token = localStorage.getItem("token");
@@ -37,6 +40,8 @@ function Delivered() {
   return (
     <>
       {isModalVisible ? (<ErrorModal onClose={() => setIsModalVisible(false)}>{errorMessage}</ErrorModal>) : null}
+      {role === "cozinha" ? (
+        <>  
         <Header />
           <main >
             {loading ?
@@ -44,7 +49,7 @@ function Delivered() {
               <Loading />
             ) : (
               <>
-                <h2>Pedidos Prontos</h2>
+                <h2>Pedidos Entregues</h2>
                 {deliveredOrders
                   .sort((a, b) => (a.id > b.id ? 1 : -1))
                   .map(({id, client_name, table, status, createdAt, Products}) => (
@@ -57,16 +62,25 @@ function Delivered() {
                         date={createdAt}
                         ordersProducts = {Products}
                       />
-                      <button
-                        onClick={() => (console.log(`clicou ${status} ${id}`)) } 
-                      >Alterar Status</button>
                     </>
                   ))
                 }
               </>
               )}
             </main>
-            <Footer />
+        <Footer />
+        </>
+      ) : (
+        <>
+        <Header />
+        <main className="acessonegado-container">
+            <p className="acessonegado-title">Ops!!!</p>
+            <p className="acessonegado-message">Você não pode acessar essa página!</p>
+            <Logo />
+        </main>
+        <Footer />
+      </>
+      )}
     </>
   );
 }

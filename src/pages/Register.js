@@ -32,7 +32,7 @@ function Register () {
                 } else {
                     localStorage.setItem("token", data.token);
                     localStorage.setItem("userId", data.id);
-                    history.push(`/${data.role}`);
+                    history.push('/Login');
                 }
             });
     }

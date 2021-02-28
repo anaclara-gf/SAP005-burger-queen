@@ -5,6 +5,9 @@ import Header from '../components/Header';
 import ErrorModal from '../components/ModalError';
 import Loading from '../components/Loading';
 import CardsOrders from '../components/cardsOrderTemplate';
+import Logo from "../components/Logo";
+
+const role = localStorage.getItem("role");
 
 function Done() {
   let token = localStorage.getItem("token");
@@ -37,6 +40,8 @@ function Done() {
   return (
     <>
       {isModalVisible ? (<ErrorModal onClose={() => setIsModalVisible(false)}>{errorMessage}</ErrorModal>) : null}
+      {role === "salao" ? (
+        <>  
         <Header />
           <main >
             {loading ?
@@ -66,7 +71,19 @@ function Done() {
               </>
               )}
             </main>
-            <Footer />
+        <Footer />
+        </>
+      ) : (
+        <>
+        <Header />
+        <main className="acessonegado-container">
+            <p className="acessonegado-title">Ops!!!</p>
+            <p className="acessonegado-message">Você não pode acessar essa página!</p>
+            <Logo />
+        </main>
+        <Footer />
+      </>
+      )}
     </>
   );
 }
