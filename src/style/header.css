@@ -5,8 +5,16 @@ header {
     padding: 0.8rem 1rem;
 }
 
+.img-header:first-child {
+    width: 60px;
+    height: auto;
+    object-fit: scale-down;
+}
+
 .img-header {
-    width: 50px;
+    width: 40px;
+    height: auto;
+    object-fit: scale-down;
 }
 
 .header-input{

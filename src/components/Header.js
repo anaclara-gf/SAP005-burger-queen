@@ -1,16 +1,15 @@
 import '../style/header.css'
 import React from "react";
-import { useHistory } from "react-router-dom";
-import logoBack from '../images/Logo-sem-nome-amarelo.png'
+import { useHistory, useLocation } from "react-router-dom";
+import logoBack from '../images/Logo-circulo.png'
 import logout from '../images/Ícones/sair-amarelo.png'
-
 
 function Header() {
     const atendente = localStorage.getItem("atendente");
-    const history = useHistory()
+    const history = useHistory();
+    const location = useLocation();
 
-    const handleNavigate = (event, path) => {
-        event.preventDefault()
+    const handleNavigate = (path) => {
         history.push(path)
     }
 
@@ -18,44 +17,56 @@ function Header() {
         <>
             <header>
                 <img className="img-header" alt="imagem-logo" src={logoBack} 
-                    onClick={(event) => handleNavigate(event, '/salao')}/>
+                    onClick={() => handleNavigate('/salao')}/>
                 <section className="header-input">
                     <input 
                         id="iniciar-um-pedido"
                         type="radio"
-                        name="pages"
+                        name="choose-pages"
                         value="/salao"
-                        onChange={(event) => handleNavigate(event, event.target.value)}
+                        defaultChecked={location.pathname === "/salao" || location.pathname.includes("/pedidos") ? true : false}
+                        onChange={(event) => { 
+                            handleNavigate(event.target.value);
+                        }}
                     />
-                    <label for="iniciar-um-pedido">Iniciar um Pedido</label>
+                    <label htmlFor="iniciar-um-pedido">Iniciar um Pedido</label>
                     <input
                         id="pedidos-em-andamento"
                         type="radio"
-                        name="pages"
+                        name="choose-pages"
                         value="/cozinha"
-                        onChange={(event) => handleNavigate(event, event.target.value)}
+                        defaultChecked={location.pathname === "/cozinha" ? true : false}
+                        onChange={(event) => {
+                            handleNavigate(event.target.value)
+                        }}
                     />
-                    <label for="pedidos-em-andamento">Pedidos em Andamento</label>
+                    <label htmlFor="pedidos-em-andamento">Pedidos em Andamento</label>
                     <input 
                         id="pedidos-prontos"
                         type="radio"
-                        name="pages"
+                        name="choose-pages"
                         value="/pronto"
-                        onChange={(event) => handleNavigate(event, event.target.value)}
+                        defaultChecked={location.pathname === "/pronto" ? true : false}
+                        onChange={(event) => {
+                            handleNavigate(event.target.value)
+                        }}
                     />
-                    <label for="pedidos-prontos">Pedidos Prontos</label>
+                    <label htmlFor="pedidos-prontos">Pedidos Prontos</label>
                     <input 
                         id="pedidos-entregues"
                         type="radio"
-                        name="pages"
+                        name="choose-pages"
                         value="/entregue"
-                        onChange={(event) => handleNavigate(event, event.target.value)}
+                        defaultChecked={location.pathname === "/entregue" ? true : false}
+                        onChange={(event) => {
+                            handleNavigate(event.target.value)
+                        }}
                     />
-                    <label for="pedidos-entregues">Pedidos Entregues</label>
+                    <label htmlFor="pedidos-entregues">Pedidos Entregues</label>
                 </section>
                 <img className="img-header" alt="imagem-sair" src={logout} 
-                    onClick={(event) => {
-                        handleNavigate(event, '/')
+                    onClick={() => {
+                        handleNavigate('/')
                         localStorage.clear()
                     }
                 }/>
