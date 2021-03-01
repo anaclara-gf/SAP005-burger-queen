@@ -52,14 +52,15 @@ function Done() {
                 <h2>Pedidos Prontos</h2>
                 {doneOrders
                   .sort((a, b) => (a.id > b.id ? 1 : -1))
-                  .map(({id, client_name, table, status, createdAt, Products}) => (
+                  .map(({id, client_name, table, status, createdAt, updatedAt, Products}) => (
                     <div className="comandas">
                       <CardsOrders
                         id={id}
                         client={client_name}
                         table={table}
                         status={status}
-                        date={createdAt}
+                        create={createdAt}
+                        update={createdAt}
                         ordersProducts = {Products}
                       />
                       <button
