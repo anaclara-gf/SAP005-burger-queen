@@ -15,13 +15,12 @@ import Lixeira from '../images/Ícones/lixo.png';
 import Loading from '../components/Loading';
 import Logo from "../components/Logo";
 
-const role = localStorage.getItem("role");
-
 function PaginaPedidos(){
     const {mesa} = useParams();
-    let history = useHistory();
-    let token = localStorage.getItem("token");
+    const history = useHistory();
+    const token = localStorage.getItem("token");
     const atendente = localStorage.getItem("atendente");
+    const role = localStorage.getItem('role');
     const [loading, setLoading] = useState(true);
 
     const [menuCafe, setMenuCafe] = useState([]);
@@ -43,6 +42,9 @@ function PaginaPedidos(){
     const [fazerPedido, setFazerPedido] = useState({"client": "", "table": mesa, "products": []});
     const [isModalVisible, setIsModalVisible] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");
+
+    const hamburguers = [{name: "carne", img: Vaca, label: "carne"}, {name: "frango", img: Frango, label: "frango"}, {name: "vegetariano", img: Veggie, label: "veggie"},];
+    const adicionais = [{name: "ovo", img: Ovo}, {name:"queijo", img: Queijo}];
 
     useEffect(() => {
         const requestOptions = {
@@ -75,9 +77,6 @@ function PaginaPedidos(){
             })   
         
     }, [token]);
-
-    const hamburguers = [{name: "carne", img: Vaca, label: "carne"}, {name: "frango", img: Frango, label: "frango"}, {name: "vegetariano", img: Veggie, label: "veggie"},];
-    const adicionais = [{name: "ovo", img: Ovo}, {name:"queijo", img: Queijo}];
 
     function extras() {
       return (
@@ -190,21 +189,31 @@ function PaginaPedidos(){
   return (
     <>
       {isModalVisible ? (<ErrorModal onClose={() => setIsModalVisible(false)}>{errorMessage}</ErrorModal>) : null}
-      {role === "salao" ? (
-      <>
-        <Header />
-        <div className="align-button">
-          <input
-            className="button-back-table" 
-            type="button" 
-            value="Escolher Mesa" 
-            onClick={() => {
-              history.push({
-              pathname: `/salao`,
-              })
-            }}
-          />
-        </div>
+      {role !== "salao" ? (
+        <>
+          <Header />
+          <main className="acessonegado-container">
+              <p className="acessonegado-title">Ops!!!</p>
+              <p className="acessonegado-message">Você não pode acessar essa página!</p>
+              <Logo />
+          </main>
+          <Footer />
+        </>
+      ) : (
+        <>
+          <Header />
+          <div className="align-button">
+            <input
+              className="button-back-table" 
+              type="button" 
+              value="Escolher Mesa" 
+              onClick={() => {
+                history.push({
+                pathname: `/salao`,
+                })
+              }}
+            />
+          </div>
           <main className="pagina-pedido">
               {loading ? 
               (
@@ -440,16 +449,6 @@ function PaginaPedidos(){
           </main>
           <Footer />
         </>
-        ) : (
-          <>
-            <Header />
-            <main className="acessonegado-container">
-                <p className="acessonegado-title">Ops!!!</p>
-                <p className="acessonegado-message">Você não pode acessar essa página!</p>
-                <Logo />
-            </main>
-            <Footer />
-            </>
         )}
         </>   
     )

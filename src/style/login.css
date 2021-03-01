@@ -51,6 +51,14 @@
     font-size: 16px;
 }
 
+.form-button p {
+    margin: 0;
+}
+
+.img-loading {
+    height: 19px;
+}
+
 .form-text {
     color: #baa295;
     margin: 0;
