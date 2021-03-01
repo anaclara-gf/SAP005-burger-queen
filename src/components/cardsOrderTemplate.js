@@ -1,5 +1,6 @@
 import React from "react";
 import '../style/salon.css'
+import '../style/kitchen.css'
 import ProductsOrders from "./productsOrderTemplate";
 
 function CardsOrders({id, client, table, status, create, update, ordersProducts}) {
@@ -20,24 +21,26 @@ function CardsOrders({id, client, table, status, create, update, ordersProducts}
   
   return (
     <>
-      <label key={`order-${id}`}>
-        <p>Cliente: {client}</p>
-        <p>Mesa: {table}</p>
-        <p>staus: {status}</p>
-        <p>Criado em: {createDateSlice} / {createHourSlice}</p>
-        <p>Finalizado em: {create === update ? null : `${updateDateSlice} / ${updateHourSlice}`}</p>
-        <p>Tempo: {calculateMinutes > 0 ? `${calculateMinutes} minutos` : null}</p>
-        <hr></hr>
-        {ordersProducts.map(({id, name, flavor, complement, qtd}) => (
-          <ProductsOrders 
-            id={id}
-            name={name}
-            flavor={flavor}
-            complement={complement}
-            qtd={qtd}
-          />
-        ))}
-        <hr></hr>
+      <label className="comanda" key={`order-${id}`}>
+        <div className="comanda-titulo">
+          <p>Cliente: {client}</p>
+          <p>Mesa: {table}</p>
+          <p>Status: {status}</p>
+          <p>Criado em: {createDateSlice} / {createHourSlice}</p>
+          <p>Finalizado em: {create === update ? null : `${updateDateSlice} / ${updateHourSlice}`}</p>
+          <p>Tempo: {calculateMinutes > 0 ? `${calculateMinutes} minutos` : null}</p>
+        </div>
+        <div className="comanda-itens">
+          {ordersProducts.map(({id, name, flavor, complement, qtd}) => (
+            <ProductsOrders 
+              id={id}
+              name={name}
+              flavor={flavor}
+              complement={complement}
+              qtd={qtd}
+            />
+          ))}
+        </div>
       </label>
     </>
   );

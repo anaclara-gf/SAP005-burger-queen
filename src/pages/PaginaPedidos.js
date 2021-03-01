@@ -15,13 +15,12 @@ import Lixeira from '../images/Ícones/lixo.png';
 import Loading from '../components/Loading';
 import Logo from "../components/Logo";
 
-const role = localStorage.getItem("role");
-
 function PaginaPedidos(){
     const {mesa} = useParams();
-    let history = useHistory();
-    let token = localStorage.getItem("token");
+    const history = useHistory();
+    const token = localStorage.getItem("token");
     const atendente = localStorage.getItem("atendente");
+    const role = localStorage.getItem('role');
     const [loading, setLoading] = useState(true);
 
     const [menuCafe, setMenuCafe] = useState([]);
@@ -43,6 +42,9 @@ function PaginaPedidos(){
     const [fazerPedido, setFazerPedido] = useState({"client": "", "table": mesa, "products": []});
     const [isModalVisible, setIsModalVisible] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");
+
+    const hamburguers = [{name: "carne", img: Vaca, label: "carne"}, {name: "frango", img: Frango, label: "frango"}, {name: "vegetariano", img: Veggie, label: "veggie"},];
+    const adicionais = [{name: "ovo", img: Ovo}, {name:"queijo", img: Queijo}];
 
     useEffect(() => {
         const requestOptions = {
@@ -75,9 +77,6 @@ function PaginaPedidos(){
             })   
         
     }, [token]);
-
-    const hamburguers = [{name: "carne", img: Vaca, label: "carne"}, {name: "frango", img: Frango, label: "frango"}, {name: "vegetariano", img: Veggie, label: "veggie"},];
-    const adicionais = [{name: "ovo", img: Ovo}, {name:"queijo", img: Queijo}];
 
     function extras() {
       return (
@@ -134,20 +133,26 @@ function PaginaPedidos(){
               type="button"
               value="OK"
               onClick={(event) => {
-                listaCompletaDeProdutos.filter(produto => {
-                  if(produto.name === selectedBurger.name && produto.flavor === selectedBurger.flavor && produto.complement === selectedBurger.complement) {
-                    setResumoPedido([...resumoPedido, {"id": produto.id, "name": [{"name": produto.name, "flavor": produto.flavor, "complement": produto.complement}], "price": produto.price, "qtd": 1}]);
-                  }
-                  return resumoPedido
-                })
-                setOpenExtrasBurgerSimples(false);
-                setOpenExtrasBurgerDuplo(false);
-                event.currentTarget.parentNode.parentNode.querySelector(".button-adicionar").classList.remove("rotate");
-                setSelectedBurger({
-                  name: null,
-                  flavor: null,
-                  complement: null
-                });
+                if(selectedBurger.flavor !== null) {
+                  listaCompletaDeProdutos.filter(produto => {
+                    if(produto.name === selectedBurger.name && produto.flavor === selectedBurger.flavor && produto.complement === selectedBurger.complement) {
+                      setResumoPedido([...resumoPedido, {"id": produto.id, "name": [{"name": produto.name, "flavor": produto.flavor, "complement": produto.complement}], "price": produto.price, "qtd": 1}]);
+                    }
+                    return resumoPedido
+                  })
+                  setOpenExtrasBurgerSimples(false);
+                  setOpenExtrasBurgerDuplo(false);
+                  event.currentTarget.parentNode.parentNode.querySelector(".button-adicionar").classList.remove("rotate");
+                  setSelectedBurger({
+                    name: null,
+                    flavor: null,
+                    complement: null
+                  });
+                }else {
+                  setIsModalVisible(true);
+                  setErrorMessage("Você precisa escolher qual o hambúrguer!");
+                }
+                
               }}
             />
           </>
@@ -184,21 +189,31 @@ function PaginaPedidos(){
   return (
     <>
       {isModalVisible ? (<ErrorModal onClose={() => setIsModalVisible(false)}>{errorMessage}</ErrorModal>) : null}
-      {role === "salao" ? (
-      <>
-        <Header />
-        <div className="align-button">
-          <input
-            className="button-back-table" 
-            type="button" 
-            value="Escolher Mesa" 
-            onClick={() => {
-              history.push({
-              pathname: `/salao`,
-              })
-            }}
-          />
-        </div>
+      {role !== "salao" ? (
+        <>
+          <Header />
+          <main className="acessonegado-container">
+              <p className="acessonegado-title">Ops!!!</p>
+              <p className="acessonegado-message">Você não pode acessar essa página!</p>
+              <Logo />
+          </main>
+          <Footer />
+        </>
+      ) : (
+        <>
+          <Header />
+          <div className="align-button">
+            <input
+              className="button-back-table" 
+              type="button" 
+              value="Escolher Mesa" 
+              onClick={() => {
+                history.push({
+                pathname: `/salao`,
+                })
+              }}
+            />
+          </div>
           <main className="pagina-pedido">
               {loading ? 
               (
@@ -208,8 +223,21 @@ function PaginaPedidos(){
 
                   <section className="menu-escolha">
                   <section className="buttons-menu-escolha">
-                      <button className="button-menu-escolha" onClick={() => setMenus(true)}>Café da Manhã</button>
-                      <button className="button-menu-escolha" onClick={() => setMenus(false)}>Almoço/Jantar</button>
+                      <input 
+                        id="button-cafe-da-manha"
+                        type="radio"
+                        name="menu"
+                        defaultChecked
+                        onClick={() => setMenus(true)}
+                      />
+                      <label className="button-menu-escolha" htmlFor="button-cafe-da-manha">Café da Manhã</label>
+                      <input 
+                        id="button-almoco"
+                        type="radio"
+                        name="menu"
+                        onClick={() => setMenus(false)}
+                      />
+                      <label className="button-menu-escolha" htmlFor="button-almoco">Almoço/Jantar</label>
                   </section>
 
               
@@ -293,46 +321,59 @@ function PaginaPedidos(){
 
                       {resumoPedido !== [] && 
                         <>
+                        <div className="resumo-pedido-itens">
                           <section className="titulo-lista-pedido">
-                            <label>Item/Valor</label>
-                            <label>Quantidade</label> 
-                          </section>
+                              <label className="item">Item</label>
+                              <label className="valor">Valor</label>
+                              <label className="quantidade">Quantidade</label> 
+                              <label className="excluir">Excluir</label>
+                            </section>
                           <ul className="lista-pedido">
                           {resumoPedido.map((item, index) => (
                             <>
                               <li className="item-lista-pedido" key={index}>
-                                  <label>
-                                    {typeof item.name === "string" ? item.name : item.name.map((item) => <><label>{item.name}</label> <label>{item.flavor}</label> <label>{item.complement}</label></> )} 
+                                  <div className="comanda-nome-hamburgueres">
+                                    {typeof item.name === "string" ? item.name : item.name.map((item) => 
+                                      <>
+                                        <label className="comanda-nome-hamburgueres-titulo">{item.name}</label> 
+                                        <label className="comanda-nome-hamburgueres-complementos">{item.flavor}</label> 
+                                        <label className="comanda-nome-hamburgueres-complementos">{item.complement}</label>
+                                      </>
+                                    )} 
+                                  </div>
+                                  <label className="item-lista-preco">
                                     {Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(item.price*item.qtd)}
                                   </label>
-                                  <input
-                                      className="button-manipular-qtd"
-                                      id="diminuir-qtd"
-                                      type="button"
-                                      value="-"
-                                      onClick={() => {
-                                        if(item.qtd > 1 && item.name === resumoPedido[index].name) {
-                                          resumoPedido[index].qtd--; 
-                                          setResumoPedido([...resumoPedido]);
-                                        } else if(item.name === resumoPedido[index].name && item.qtd === 1) {
-                                          resumoPedido.splice(index, 1);
-                                          setResumoPedido([...resumoPedido]);
-                                        } 
-                                      }}
-                                  />
-                                  <label>{item.qtd}</label>
-                                  <input
-                                      className="button-manipular-qtd"
-                                      id="aumentar-qtd"
-                                      type="button"
-                                      value="+"
-                                      onClick={() => {
-                                        if(item.name === resumoPedido[index].name) {
-                                          resumoPedido[index].qtd++; 
-                                          setResumoPedido([...resumoPedido]);
-                                        }
-                                      }}
-                                  />
+                                  <div className="item-lista-quantidade">
+                                    <input
+                                        className="button-manipular-qtd"
+                                        id="diminuir-qtd"
+                                        type="button"
+                                        value="-"
+                                        onClick={() => {
+                                          if(item.qtd > 1 && item.name === resumoPedido[index].name) {
+                                            resumoPedido[index].qtd--; 
+                                            setResumoPedido([...resumoPedido]);
+                                          } else if(item.name === resumoPedido[index].name && item.qtd === 1) {
+                                            resumoPedido.splice(index, 1);
+                                            setResumoPedido([...resumoPedido]);
+                                          } 
+                                        }}
+                                    />
+                                    <label>{item.qtd}</label>
+                                    <input
+                                        className="button-manipular-qtd"
+                                        id="aumentar-qtd"
+                                        type="button"
+                                        value="+"
+                                        onClick={() => {
+                                          if(item.name === resumoPedido[index].name) {
+                                            resumoPedido[index].qtd++; 
+                                            setResumoPedido([...resumoPedido]);
+                                          }
+                                        }}
+                                    />
+                                  </div>
                                   <input
                                       className="button-excluir-item"
                                       id="excluir-item"
@@ -348,6 +389,8 @@ function PaginaPedidos(){
                             </>
                           ))}
                           </ul>
+                        </div>
+                          
                           <p className="total-resumo-pedido">TOTAL: {Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(somarPrecoTotal(resumoPedido))}</p>
                           <section className="buttons-resumo-pedido">
                             <input className="button-resumo-pedido"
@@ -406,16 +449,6 @@ function PaginaPedidos(){
           </main>
           <Footer />
         </>
-        ) : (
-          <>
-            <Header />
-            <main className="acessonegado-container">
-                <p className="acessonegado-title">Ops!!!</p>
-                <p className="acessonegado-message">Você não pode acessar essa página!</p>
-                <Logo />
-            </main>
-            <Footer />
-            </>
         )}
         </>   
     )

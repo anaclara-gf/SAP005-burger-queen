@@ -40,7 +40,7 @@ function Delivered() {
   return (
     <>
       {isModalVisible ? (<ErrorModal onClose={() => setIsModalVisible(false)}>{errorMessage}</ErrorModal>) : null}
-      {role === "cozinha" ? (
+      {role === "cozinha" || role === "salao" ? (
         <>  
         <Header />
           <main >
@@ -48,12 +48,12 @@ function Delivered() {
             (
               <Loading />
             ) : (
-              <>
+              <section className="pedidos-entregue">
                 <h2>Pedidos Entregues</h2>
                 {deliveredOrders
                   .sort((a, b) => (a.id > b.id ? 1 : -1))
                   .map(({id, client_name, table, status, createdAt, updatedAt, Products}) => (
-                    <>
+                    <div className="comandas">
                       <CardsOrders
                         id={id}
                         client={client_name}
@@ -63,10 +63,10 @@ function Delivered() {
                         update={updatedAt}
                         ordersProducts = {Products}
                       />
-                    </>
+                    </div>
                   ))
                 }
-              </>
+              </section>
               )}
             </main>
         <Footer />

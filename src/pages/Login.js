@@ -4,15 +4,18 @@ import { Link, useHistory } from 'react-router-dom';
 import Footer from '../components/Footer';
 import Logo from '../components/Logo';
 import ErrorModal from '../components/ModalError';
+import Loading from '../components/Loading';
 
 function Login(props) {
     const [authInfo, setAuthInfo] = useState(props.authInfo);
     let history = useHistory();
     const [isModalVisible, setIsModalVisible] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");
+    const [loading, setLoading] = useState(false)
   
     const handleSubmit = (event) => {
       event.preventDefault();
+      setLoading(true)
   
       const requestOptions = {
         method: 'POST',
@@ -33,6 +36,7 @@ function Login(props) {
             history.push({
               pathname: `/${data.role}`,
             });
+            setLoading(false);
           } else {
             setIsModalVisible(true)
             setErrorMessage(`${data.message}`)
@@ -46,32 +50,33 @@ function Login(props) {
           <section className="login">
             <Logo />
             <form className="form-login" onSubmit={handleSubmit}>
-            <input 
-                className="form-input"
-                type="text" 
-                placeholder="E-mail"
-                onChange={(event) => setAuthInfo({ ...authInfo, "email": event.target.value })} 
-            />
-    
-            <input
-                className="form-input"
-                type="password" 
-                placeholder="Senha"
-                onChange={(event) => setAuthInfo({ ...authInfo, "password": event.target.value })} 
-            />
-    
-            <button
-                className="form-button" 
-                type="submit" 
-                value="Submit"
-            >
-                ENTRAR
-            </button>
-    
-            <p className="form-text">
-                Não tem uma conta? 
-                <Link className="form-router" to="/register" alt="Página Registro">Registre-se!</Link>
-            </p>
+              <input 
+                  className="form-input"
+                  type="text" 
+                  placeholder="E-mail"
+                  onChange={(event) => setAuthInfo({ ...authInfo, "email": event.target.value })} 
+              />
+      
+              <input
+                  className="form-input"
+                  type="password" 
+                  placeholder="Senha"
+                  onChange={(event) => setAuthInfo({ ...authInfo, "password": event.target.value })} 
+              />
+      
+              <button
+                  className="form-button" 
+                  type="submit" 
+                  value="Submit"
+              >
+                  {!loading && <p>ENTRAR</p>}
+                  {loading && <Loading />}
+              </button>
+      
+              <p className="form-text">
+                  Não tem uma conta? 
+                  <Link className="form-router" to="/register" alt="Página Registro">Registre-se!</Link>
+              </p>
             </form>
         </section>
         <Footer />

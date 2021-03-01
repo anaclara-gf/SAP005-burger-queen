@@ -1,4 +1,73 @@
 .pedidos-cozinha {
   display: flex;
-  justify-content: space-around;
+  margin-bottom: 2rem;
+  justify-content: center;
+}
+
+.comandas {
+  border: 3px solid #450604;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  background-color: #ead6cd;
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  height: auto;
+  margin: 0 0 1rem 0;
+}
+
+.pedidos-pendentes, .pedidos-andamento {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 50%;
+  text-align: center;
+  align-items: flex-start;
+  align-self: flex-start;
+}
+
+.pedidos-entregue, .pedidos-pronto {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 50%;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.pedidos-pendentes {
+  border-right: 2px solid #450604;
+}
+
+.pedidos-pendentes h2, .pedidos-andamento h2 {
+  width: 100%;
+  text-align: center;
+  line-height: 24px;
+}
+
+.comanda p{
+  margin: 0;
+}
+
+.comanda p:first-child {
+  font-weight: bold;
+}
+
+.comanda-titulo, .comanda-itens {
+  border-bottom: 1.5px solid #450604;
+  margin-bottom: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.comanda-button {
+  background-color: #aa3908;
+  color: #baa295;
+  border: 1px solid transparent;
+  border-radius: 0.2rem;
+  padding: 0.2rem 0.5rem;
+  cursor: pointer;
+  text-align: center;
+  font-size: 16px;
+  width: 80%;
+  align-self: center;
 }

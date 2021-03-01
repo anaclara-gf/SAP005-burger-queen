@@ -27,7 +27,7 @@
   background-color: #ead6cd;
   display: flex;
   flex-direction: column;
-  width: 300px;
+  width: 40%;
   height: 470px;
 }
 
@@ -46,6 +46,83 @@
   text-align: center;
   font-size: 16px;
   color: #383636;
+  width: 45%;
+}
+
+.button-resumo-pedido:first-child {
+  background-color: #aa3908;
+  color: #baa295;
+}
+
+.item {
+  grid-area: item;
+  display: inline-block;
+}
+
+.comanda-nome-hamburgueres{
+  grid-area: itens;
+  display: inline-block;
+}
+
+.valor {
+  grid-area: valor;
+  display: inline-block;
+  justify-self: center;
+}
+
+.item-lista-preco {
+  grid-area: preco;
+  display: inline-block;
+  justify-self: center;
+}
+
+.quantidade {
+  grid-area: quantidade;
+  display: inline-block;
+  justify-self: center;
+}
+
+.item-lista-quantidade {
+  grid-area: botoesQuantidade;
+  display: inline-block;
+  justify-self: center;
+}
+
+.excluir {
+  grid-area: excluir;
+  display: inline-block;
+  justify-self: end;
+}
+
+.button-excluir-item {
+  grid-area: botaoExcluir;
+  display: inline-block;
+  margin: 0 0.5rem 0 0;
+  justify-self: end;
+}
+
+.titulo-lista-pedido{
+  display: grid;
+  grid-template-areas: 
+    "item valor quantidade excluir";
+  grid-template-columns: 30% 27.5% 27.5% 15%;
+  font-size: 12px;
+  font-weight: 800;
+  color: #aa3908;
+  width: calc(100% - 1rem);
+  justify-content: center;
+  margin: 0 0 0.5rem 0.5rem;
+}
+
+.item-lista-pedido {
+  display: grid;
+  grid-template-areas: 
+    "itens preco botoesQuantidade botaoExcluir";
+  grid-template-columns: 30% 27.5% 27.5% 15%;
+  font-size: 12px;
+  border-top: 2px solid #450604;
+  align-items: center;
+  padding: 0.5rem 0;
 }
 
 .lista-menu, .lista-pedido{
@@ -56,7 +133,7 @@
   overflow: scroll;
 }
 
-.item-lista-menu, .item-lista-pedido {
+.item-lista-menu {
   border-top: 2px solid #450604;
   padding: 0.8rem;
   display: flex;
@@ -65,8 +142,15 @@
   align-items: center;
 }
 
-.item-lista-pedido {
-  padding-right: 0rem;
+.comanda-nome-hamburgueres {
+  display: flex;
+  flex-direction: column;
+}
+
+.comanda-nome-hamburgueres-complementos {
+  margin: 0 0 0 0.5rem;
+  font-style: italic;
+  font-size: 12px;
 }
 
 .button-menu-escolha:focus, .button-resumo-pedido:focus {
@@ -95,6 +179,8 @@
   display: flex;
   align-content: center;
   margin:auto;
+  width: 15%;
+  height: auto;
 }
 
 .titulo-resumo-pedido {
@@ -107,6 +193,8 @@
   text-align: center;
   font-size: 16px;
   font-family: Arial;
+  height: 21px;
+  line-height: 21px;
 }
 
 .infos-resumo-pedido {
@@ -119,6 +207,7 @@
 
 .cliente-resumo-pedido {
   margin: 0.5rem;
+  margin-bottom: 1rem;
   padding: 0.2rem 0.5rem;
   text-align: center;
   font-size: 14px;
@@ -127,17 +216,9 @@
   background-color: #baa295;
 }
 
-.titulo-lista-pedido{
-  display: flex;
-  justify-content: space-between;
-  font-size: 12px;
-  font-weight: 800;
-  color: #aa3908;
-  margin: 0 0.5rem;
-}
-
 .total-resumo-pedido{
-  margin: 0.5rem;
+  margin: 0 0.5rem;
+  padding-top: 0.5rem;
   text-align: center;
   font-size: 16px;
   font-weight: 700;
@@ -148,19 +229,18 @@
 .menu-extras{
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
 
 .escolhas-extras {
   display: flex;
   justify-content: space-around;
   margin: 0.5rem 0;
-  width: 100%;
 }
 
 .button-ok-extras {
   background-color: #aa3908;
   color: #baa295;
-  font-weight: bold;
   border: 1px solid transparent;
   border-radius: 0.2rem;
   padding: 0.2rem 0.5rem;
@@ -189,7 +269,7 @@
   border-radius: 0.5rem;
 }
 
-.opcoes-burguer input[type=radio], .opcoes-adicionais input[type=radio] {
+.opcoes-burguer input[type=radio], .opcoes-adicionais input[type=radio], .buttons-menu-escolha input[type=radio] {
   display: none;
   cursor: pointer;
 }
@@ -212,6 +292,11 @@
   background-color: #f2bf27;
 }
 
+.buttons-menu-escolha input[type=radio]:checked+label {
+  background-color: #aa3908;
+  color: #baa295;
+}
+
 .img-input-extras {
   display: flex;
   justify-content: space-between;
@@ -229,7 +314,7 @@
 }
 
 .button-manipular-qtd {
-  margin: 0.2rem;
+  margin: 0 0.5rem;
   padding: 0;
   width: 18px;
   height: 23px;
@@ -238,4 +323,5 @@
   border: 0.5px solid transparent;
   border-radius: 0.2rem;
   color: #baa295;
+  outline: none;
 }
