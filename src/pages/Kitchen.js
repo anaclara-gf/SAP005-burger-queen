@@ -7,9 +7,8 @@ import Loading from '../components/Loading';
 import CardsOrders from '../components/cardsOrderTemplate';
 import Logo from "../components/Logo";
 
-const role = localStorage.getItem("role");
-
 function Kitchen() {
+  const [role, setRole] = useState(localStorage.getItem("role"));
   let token = localStorage.getItem("token");
   const [pendingOrders, setPendingOrders] = useState([])
   const [doingOrders, setDoingOrders] = useState([])
@@ -58,7 +57,7 @@ function Kitchen() {
                   {pendingOrders
                     .sort((a, b) => (a.id > b.id ? 1 : -1))
                     .map(({id, client_name, table, status, createdAt, Products}) => (
-                      <>
+                      <div className="comandas">
                         <CardsOrders
                           id={id}
                           client={client_name}
@@ -68,9 +67,10 @@ function Kitchen() {
                           ordersProducts = {Products}
                         />
                         <button
+                          className="comanda-button"
                           onClick={() => (console.log(`clicou ${status} ${id}`)) } 
                         >Alterar Status</button>
-                      </>
+                      </div>
                       ))
                   }
                 </section>
@@ -81,7 +81,7 @@ function Kitchen() {
                       {doingOrders
                         .sort((a, b) => (a.id > b.id ? 1 : -1))
                         .map(({id, client_name, table, status, createdAt, Products}) => (
-                          <>
+                          <div className="comandas">
                             <CardsOrders
                               id={id}
                               client={client_name}
@@ -91,9 +91,10 @@ function Kitchen() {
                               ordersProducts = {Products}
                             />
                             <button
+                              className="comanda-button"
                               onClick={() => (console.log(`clicou ${status} ${id}`)) } 
                             >Alterar Status</button>
-                          </>
+                          </div>
                         ))
                       }
                     

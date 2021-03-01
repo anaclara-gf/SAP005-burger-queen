@@ -48,12 +48,12 @@ function Done() {
             (
               <Loading />
             ) : (
-              <>
+              <section className="pedidos-pronto">
                 <h2>Pedidos Prontos</h2>
                 {doneOrders
                   .sort((a, b) => (a.id > b.id ? 1 : -1))
                   .map(({id, client_name, table, status, createdAt, Products}) => (
-                    <>
+                    <div className="comandas">
                       <CardsOrders
                         id={id}
                         client={client_name}
@@ -63,12 +63,13 @@ function Done() {
                         ordersProducts = {Products}
                       />
                       <button
+                        className="comanda-button"
                         onClick={() => (console.log(`clicou ${status} ${id}`)) } 
                       >Alterar Status</button>
-                    </>
+                    </div>
                   ))
                 }
-              </>
+              </section>
               )}
             </main>
         <Footer />
