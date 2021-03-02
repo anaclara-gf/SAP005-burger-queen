@@ -39,11 +39,19 @@
 
 .pedidos-entregue, .pedidos-pronto {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  flex-direction: column;
   width: 50%;
   text-align: center;
   margin: 0 auto;
+}
+
+.lista-pedidos-pronto, .lista-pedidos-entregue {
+  overflow: scroll;
+  height: 68.5vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .pedidos-pendentes {
