@@ -15,6 +15,7 @@ function Kitchen() {
   const [loading, setLoading] = useState(true);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+  const url = "https://lab-api-bq.herokuapp.com/orders";
 
   useEffect(() => {
     const requestOptions = {
@@ -37,8 +38,41 @@ function Kitchen() {
       })  
   }, [token]);
 
-  console.log(pendingOrders)
-  console.log(doingOrders)
+    const handleStatusOrders = (id, status, index) => {
+      let path = `/${id}`
+      let statusChanged = ""
+      if (status === "pending") {
+        statusChanged = {"status" : "doing"}
+      }
+      if (status === "doing") {
+        statusChanged = {"status" : "done"}
+      }
+      const requestOptions = {
+        method: 'PUT',
+        headers: { 
+          'Content-Type': 'application/json',
+          'Authorization': `${token}`
+        },
+        body: JSON.stringify(statusChanged),
+      };
+
+      fetch(`${url}${path}`, requestOptions)
+        .then(response => response.json())
+        .then((data) => {
+          if(data.id === pendingOrders[index].id) {
+            pendingOrders.splice(index, 1)
+            setPendingOrders([...pendingOrders])
+            setDoingOrders([...doingOrders, data])
+          }
+          if(data.id === doingOrders[index].id){
+            doingOrders.splice(index, 1)
+            setDoingOrders([...doingOrders])
+          }
+        })
+
+    }
+
+
     return (
       <>
       {isModalVisible ? (<ErrorModal onClose={() => setIsModalVisible(false)}>{errorMessage}</ErrorModal>) : null}

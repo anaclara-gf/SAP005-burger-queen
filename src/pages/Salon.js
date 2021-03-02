@@ -6,9 +6,10 @@ import Footer from '../components/Footer';
 import Mesas from '../components/Mesas';
 import Logo from "../components/Logo";
 
-const role = localStorage.getItem("role");
+
 
 const Salon = () => {
+    const role = localStorage.getItem("role");
     const numeroDeMesas = 20;
     const mesas = [];
 
