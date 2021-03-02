@@ -107,7 +107,7 @@ function Kitchen() {
                           onClick={() => {
                             handleStatusOrders(id, status, index)
                           }}
-                        >Alterar Status</button>
+                        >Começar Pedido</button>
                       </div>
                       ))
                   }
@@ -134,7 +134,7 @@ function Kitchen() {
                               onClick={() => {
                                 handleStatusOrders(id, status, index)
                               }} 
-                            >Alterar Status</button>
+                            >Pedido Pronto</button>
                           </div>
                         ))
                       }
