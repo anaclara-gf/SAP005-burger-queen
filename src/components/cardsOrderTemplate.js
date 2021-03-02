@@ -3,7 +3,7 @@ import '../style/salon.css'
 import '../style/kitchen.css'
 import ProductsOrders from "./productsOrderTemplate";
 
-function CardsOrders({id, client, table, status, create, update, ordersProducts}) {
+function CardsOrders({id, client, table, status, create, update, ordersProducts, index}) {
   const createDate = new Date(create);
   const updateDate = new Date(update);
   const calculateSeconds = Math.abs(updateDate) - createDate;
@@ -15,13 +15,10 @@ function CardsOrders({id, client, table, status, create, update, ordersProducts}
   const createHourSlice = createDateString.substring(15,25);
   const updateDateSlice = updateDateString.substring(4,15);
   const updateHourSlice = updateDateString.substring(15,25);
-
-  console.log(calculateSeconds)
-  console.log(calculateMinutes)
   
   return (
     <>
-      <label className="comanda" key={`order-${id}`}>
+      <label className="comanda" key={index}>
         <div className="comanda-titulo">
           <p>Cliente: {client}</p>
           <p>Mesa: {table}</p>

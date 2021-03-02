@@ -7,9 +7,8 @@ import Loading from '../components/Loading';
 import CardsOrders from '../components/cardsOrderTemplate';
 import Logo from "../components/Logo";
 
-const role = localStorage.getItem("role");
-
 function Delivered() {
+  const role = localStorage.getItem("role");
   let token = localStorage.getItem("token");
   const [deliveredOrders, setDeliveredOrders] = useState([])
   const [loading, setLoading] = useState(true);

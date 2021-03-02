@@ -321,7 +321,7 @@ function PaginaPedidos(){
 
                       {resumoPedido !== [] && 
                         <>
-                        <div className="resumo-pedido-itens">
+                        {/* <div className="resumo-pedido-itens"> */}
                           <section className="titulo-lista-pedido">
                               <label className="item">Item</label>
                               <label className="valor">Valor</label>
@@ -389,7 +389,7 @@ function PaginaPedidos(){
                             </>
                           ))}
                           </ul>
-                        </div>
+                        {/* </div> */}
                           
                           <p className="total-resumo-pedido">TOTAL: {Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(somarPrecoTotal(resumoPedido))}</p>
                           <section className="buttons-resumo-pedido">

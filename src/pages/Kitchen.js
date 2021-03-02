@@ -15,6 +15,7 @@ function Kitchen() {
   const [loading, setLoading] = useState(true);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+  const url = "https://lab-api-bq.herokuapp.com/orders";
 
   useEffect(() => {
     const requestOptions = {
@@ -37,8 +38,41 @@ function Kitchen() {
       })  
   }, [token]);
 
-  console.log(pendingOrders)
-  console.log(doingOrders)
+    const handleStatusOrders = (id, status, index) => {
+      let path = `/${id}`
+      let statusChanged = ""
+      if (status === "pending") {
+        statusChanged = {"status" : "doing"}
+      }
+      if (status === "doing") {
+        statusChanged = {"status" : "done"}
+      }
+      const requestOptions = {
+        method: 'PUT',
+        headers: { 
+          'Content-Type': 'application/json',
+          'Authorization': `${token}`
+        },
+        body: JSON.stringify(statusChanged),
+      };
+
+      fetch(`${url}${path}`, requestOptions)
+        .then(response => response.json())
+        .then((data) => {
+          if(data.id === pendingOrders[index].id) {
+            pendingOrders.splice(index, 1)
+            setPendingOrders([...pendingOrders])
+            setDoingOrders([...doingOrders, data])
+          }
+          if(data.id === doingOrders[index].id){
+            doingOrders.splice(index, 1)
+            setDoingOrders([...doingOrders])
+          }
+        })
+
+    }
+
+
     return (
       <>
       {isModalVisible ? (<ErrorModal onClose={() => setIsModalVisible(false)}>{errorMessage}</ErrorModal>) : null}
@@ -56,9 +90,10 @@ function Kitchen() {
                   <h2>Pedidos Criados</h2>
                   {pendingOrders
                     .sort((a, b) => (a.id > b.id ? 1 : -1))
-                    .map(({id, client_name, table, status, createdAt, updatedAt, Products}) => (
+                    .map(({id, client_name, table, status, createdAt, updatedAt, Products}, index) => (
                       <div className="comandas">
                         <CardsOrders
+                          key={index}
                           id={id}
                           client={client_name}
                           table={table}
@@ -69,7 +104,9 @@ function Kitchen() {
                         />
                         <button
                           className="comanda-button"
-                          onClick={() => (console.log(`clicou ${status} ${id}`)) } 
+                          onClick={() => {
+                            handleStatusOrders(id, status, index)
+                          }}
                         >Alterar Status</button>
                       </div>
                       ))
@@ -81,7 +118,7 @@ function Kitchen() {
                       <h2>Pedidos em Andamento</h2>
                       {doingOrders
                         .sort((a, b) => (a.id > b.id ? 1 : -1))
-                        .map(({id, client_name, table, status, createdAt, updatedAt, Products}) => (
+                        .map(({id, client_name, table, status, createdAt, updatedAt, Products}, index) => (
                           <div className="comandas">
                             <CardsOrders
                               id={id}
@@ -94,7 +131,9 @@ function Kitchen() {
                             />
                             <button
                               className="comanda-button"
-                              onClick={() => (console.log(`clicou ${status} ${id}`)) } 
+                              onClick={() => {
+                                handleStatusOrders(id, status, index)
+                              }} 
                             >Alterar Status</button>
                           </div>
                         ))
