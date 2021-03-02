@@ -1,10 +1,10 @@
-import '../style/login.css'
 import React, { useState, useEffect } from "react";
 import { Link, useHistory } from 'react-router-dom';
 import Footer from '../components/Footer';
 import Logo from '../components/Logo';
 import ErrorModal from '../components/ModalError';
 import Loading from '../components/Loading';
+import '../style/login.css'
 
 function Login(props) {
     const [authInfo, setAuthInfo] = useState(props.authInfo);
@@ -38,8 +38,9 @@ function Login(props) {
             });
             setLoading(false);
           } else {
-            setIsModalVisible(true)
-            setErrorMessage(`${data.message}`)
+            setIsModalVisible(true);
+            setErrorMessage(`${data.message}`);
+            setLoading(false);
           }
         })
       }
@@ -70,7 +71,7 @@ function Login(props) {
                   value="Submit"
               >
                   {!loading && <p>ENTRAR</p>}
-                  {loading && <Loading />}
+                  {loading && <Loading id={"img-loading-id"}/>}
               </button>
       
               <p className="form-text">

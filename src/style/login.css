@@ -55,8 +55,9 @@
     margin: 0;
 }
 
-.img-loading {
+#img-loading-id {
     height: 19px;
+    width: auto;
 }
 
 .form-text {

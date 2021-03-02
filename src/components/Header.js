@@ -16,25 +16,27 @@ function Header() {
         history.push(path)
     }
 
+    
     useEffect(() => {
         const requestOptions = {
-          method: 'GET',
-          headers: { 
-            'Content-Type': 'application/json',
-            'Authorization': `${token}`
-          },
-        };
-    
-        fetch('https://lab-api-bq.herokuapp.com/orders', requestOptions)
-          .then(response => response.json())
-          .then(data => {
-            if (data) {
-              const allOrders = data
-              setDoneOrders(allOrders.filter((pedido) => pedido.status.includes("done")))
-            }
-          })  
-      }, [token]);
-    
+            method: 'GET',
+            headers: { 
+                'Content-Type': 'application/json',
+                'Authorization': `${token}`
+            },
+            };
+        
+            fetch('https://lab-api-bq.herokuapp.com/orders', requestOptions)
+            .then(response => response.json())
+            .then(data => {
+                if (data) {
+                const allOrders = data
+                setDoneOrders(allOrders.filter((pedido) => pedido.status.includes("done")))
+                }
+            })  
+    }, [token]);
+
+    setInterval(() => doneOrders, 1000);
 
     return (
         <>
@@ -70,10 +72,13 @@ function Header() {
                             }}
                         />
 
-                        <label className="label-header" htmlFor="pedidos-prontos">Pedidos Prontos</label>
-                        <label htmlFor="pedidos-prontos" className="notificacao-pedidos-prontos">
-                            {doneOrders.length > 0 ? doneOrders.length : null}
+                        <label className="notificacao-position label-header" htmlFor="pedidos-prontos">
+                            Pedidos Prontos
+                            <label htmlFor="pedidos-prontos" className="notificacao-pedidos-prontos">
+                                {doneOrders.length > 0 ? doneOrders.length : null}
+                            </label>
                         </label>
+                        
 
                         
 
