@@ -75,29 +75,31 @@ function Done() {
             ) : (
               <section className="pedidos-pronto">
                 <h2>Pedidos Prontos</h2>
-                {doneOrders
-                  .sort((a, b) => (a.id > b.id ? 1 : -1))
-                  .map(({id, client_name, table, status, createdAt, updatedAt, Products}, index) => (
-                    <div className="comandas">
-                      <CardsOrders
-                        key={index}
-                        id={id}
-                        client={client_name}
-                        table={table}
-                        status={status}
-                        create={createdAt}
-                        update={createdAt}
-                        ordersProducts = {Products}
-                      />
-                      <button
-                        className="comanda-button"
-                        onClick={() => {
-                          handleStatusOrders(id, status, index)
-                        }} 
-                      >Alterar Status</button>
-                    </div>
-                  ))
-                }
+                <div className="lista-pedidos-pronto">
+                  {doneOrders
+                    .sort((a, b) => (a.id > b.id ? 1 : -1))
+                    .map(({id, client_name, table, status, createdAt, updatedAt, Products}, index) => (
+                      <div className="comandas">
+                        <CardsOrders
+                          key={index}
+                          id={id}
+                          client={client_name}
+                          table={table}
+                          status={status}
+                          create={createdAt}
+                          update={createdAt}
+                          ordersProducts = {Products}
+                        />
+                        <button
+                          className="comanda-button"
+                          onClick={() => {
+                            handleStatusOrders(id, status, index)
+                          }} 
+                        >Alterar Status</button>
+                      </div>
+                    ))
+                  }
+                </div>
               </section>
               )}
             </main>

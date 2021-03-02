@@ -1,5 +1,5 @@
 import React from "react";
-import '../style/salon.css'
+// import '../style/salon.css'
 
 function ProductsOrders({id, name, flavor, complement, qtd}) {
    

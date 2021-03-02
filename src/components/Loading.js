@@ -1,12 +1,11 @@
 import React from "react";
-import '../style/paginapedidos.css'
 import Carregando from '../images/Ícones/loading-marrom.gif'
 
-function Loading() {
+function Loading({id}) {
 
   return (
     <>
-      <img className="img-loading" alt="Carregando" src={Carregando}/>
+      <img id={id} className="img-loading" alt="Carregando" src={Carregando}/>
     </>
   );
 }

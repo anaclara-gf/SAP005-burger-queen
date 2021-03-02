@@ -1,4 +1,4 @@
-import '../style/login.css'
+// import '../style/login.css'
 import React, { useState, useEffect } from "react";
 import { Link, useHistory } from 'react-router-dom';
 import Cozinha from '../images/Ícones/chef.png'
