@@ -69,9 +69,7 @@ function Kitchen() {
             setDoingOrders([...doingOrders])
           }
         })
-
     }
-
 
     return (
       <>
@@ -91,7 +89,7 @@ function Kitchen() {
                   <div className="comandas-pedidos-criados">
                     {pendingOrders
                       .sort((a, b) => (a.id > b.id ? 1 : -1))
-                      .map(({id, client_name, table, status, createdAt, Products}) => (
+                      .map(({id, client_name, table, status, createdAt, Products}, index) => (
                         <div className="comandas">
                           <CardsOrders
                             id={id}
@@ -103,7 +101,7 @@ function Kitchen() {
                           />
                           <button
                             className="comanda-button"
-                            onClick={() => (console.log(`clicou ${status} ${id}`)) } 
+                            onClick={() => handleStatusOrders(id, status, index)} 
                           >Alterar Status</button>
                         </div>
                         ))
@@ -117,7 +115,7 @@ function Kitchen() {
                       <div className="comandas-pedidos-andamento">
                         {doingOrders
                           .sort((a, b) => (a.id > b.id ? 1 : -1))
-                          .map(({id, client_name, table, status, createdAt, Products}) => (
+                          .map(({id, client_name, table, status, createdAt, Products}, index) => (
                             <div className="comandas">
                               <CardsOrders
                                 id={id}
@@ -129,7 +127,7 @@ function Kitchen() {
                               />
                               <button
                                 className="comanda-button"
-                                onClick={() => (console.log(`clicou ${status} ${id}`)) } 
+                                onClick={() => handleStatusOrders(id, status, index)} 
                               >Alterar Status</button>
                             </div>
                           ))

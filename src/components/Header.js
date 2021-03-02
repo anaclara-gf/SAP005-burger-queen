@@ -16,25 +16,27 @@ function Header() {
         history.push(path)
     }
 
+    
     useEffect(() => {
         const requestOptions = {
-          method: 'GET',
-          headers: { 
-            'Content-Type': 'application/json',
-            'Authorization': `${token}`
-          },
-        };
-    
-        fetch('https://lab-api-bq.herokuapp.com/orders', requestOptions)
-          .then(response => response.json())
-          .then(data => {
-            if (data) {
-              const allOrders = data
-              setDoneOrders(allOrders.filter((pedido) => pedido.status.includes("done")))
-            }
-          })  
-      }, [token]);
-    
+            method: 'GET',
+            headers: { 
+                'Content-Type': 'application/json',
+                'Authorization': `${token}`
+            },
+            };
+        
+            fetch('https://lab-api-bq.herokuapp.com/orders', requestOptions)
+            .then(response => response.json())
+            .then(data => {
+                if (data) {
+                const allOrders = data
+                setDoneOrders(allOrders.filter((pedido) => pedido.status.includes("done")))
+                }
+            })  
+    }, [token]);
+
+    setInterval(() => doneOrders, 1000);
 
     return (
         <>
