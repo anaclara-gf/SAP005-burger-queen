@@ -130,6 +130,9 @@
   margin: 0 0.5rem;
   padding: 0;
   font-size: 14px;
+}
+
+.lista-menu, .resumo-pedido-itens {
   overflow: scroll;
 }
 

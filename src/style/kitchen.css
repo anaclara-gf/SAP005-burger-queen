@@ -20,10 +20,21 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  width: 50%;
   text-align: center;
   align-items: flex-start;
-  align-self: flex-start;
+  align-content:flex-start;
+  width: 50%;
+}
+
+.comandas-pedidos-criados, .comandas-pedidos-andamento {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  text-align: center;
+  align-items: flex-start;
+  height: 68.5vh;
+  overflow: scroll;
+  width: 100%;
 }
 
 .pedidos-entregue, .pedidos-pronto {

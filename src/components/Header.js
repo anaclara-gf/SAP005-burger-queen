@@ -70,10 +70,13 @@ function Header() {
                             }}
                         />
 
-                        <label className="label-header" htmlFor="pedidos-prontos">Pedidos Prontos</label>
-                        <label htmlFor="pedidos-prontos" className="notificacao-pedidos-prontos">
-                            {doneOrders.length > 0 ? doneOrders.length : null}
+                        <label className="notificacao-position label-header" htmlFor="pedidos-prontos">
+                            Pedidos Prontos
+                            <label htmlFor="pedidos-prontos" className="notificacao-pedidos-prontos">
+                                {doneOrders.length > 0 ? doneOrders.length : null}
+                            </label>
                         </label>
+                        
 
                         
 

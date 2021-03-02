@@ -1,5 +1,4 @@
 /* eslint-disable array-callback-return */
-import '../style/paginapedidos.css'
 import React, { useEffect, useState } from 'react';
 import { useHistory, useParams } from "react-router-dom";
 import Header from '../components/Header';
@@ -14,6 +13,7 @@ import Queijo from '../images/Ícones/queijo.png';
 import Lixeira from '../images/Ícones/lixo.png';
 import Loading from '../components/Loading';
 import Logo from "../components/Logo";
+import '../style/paginapedidos.css'
 
 function PaginaPedidos(){
     const {mesa} = useParams();

@@ -1,5 +1,5 @@
 import React from "react";
-import '../style/salon.css'
+// import '../style/salon.css'
 import '../style/kitchen.css'
 import ProductsOrders from "./productsOrderTemplate";
 

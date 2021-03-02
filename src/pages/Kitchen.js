@@ -54,49 +54,53 @@ function Kitchen() {
               <>
                 <section className="pedidos-pendentes">
                   <h2>Pedidos Criados</h2>
-                  {pendingOrders
-                    .sort((a, b) => (a.id > b.id ? 1 : -1))
-                    .map(({id, client_name, table, status, createdAt, Products}) => (
-                      <div className="comandas">
-                        <CardsOrders
-                          id={id}
-                          client={client_name}
-                          table={table}
-                          status={status}
-                          date={createdAt}
-                          ordersProducts = {Products}
-                        />
-                        <button
-                          className="comanda-button"
-                          onClick={() => (console.log(`clicou ${status} ${id}`)) } 
-                        >Alterar Status</button>
-                      </div>
-                      ))
-                  }
+                  <div className="comandas-pedidos-criados">
+                    {pendingOrders
+                      .sort((a, b) => (a.id > b.id ? 1 : -1))
+                      .map(({id, client_name, table, status, createdAt, Products}) => (
+                        <div className="comandas">
+                          <CardsOrders
+                            id={id}
+                            client={client_name}
+                            table={table}
+                            status={status}
+                            date={createdAt}
+                            ordersProducts = {Products}
+                          />
+                          <button
+                            className="comanda-button"
+                            onClick={() => (console.log(`clicou ${status} ${id}`)) } 
+                          >Alterar Status</button>
+                        </div>
+                        ))
+                    }
+                  </div>
                 </section>
                 <section className="pedidos-andamento">
                   {doingOrders !== [] &&
                     <>
                       <h2>Pedidos em Andamento</h2>
-                      {doingOrders
-                        .sort((a, b) => (a.id > b.id ? 1 : -1))
-                        .map(({id, client_name, table, status, createdAt, Products}) => (
-                          <div className="comandas">
-                            <CardsOrders
-                              id={id}
-                              client={client_name}
-                              table={table}
-                              status={status}
-                              date={createdAt}
-                              ordersProducts = {Products}
-                            />
-                            <button
-                              className="comanda-button"
-                              onClick={() => (console.log(`clicou ${status} ${id}`)) } 
-                            >Alterar Status</button>
-                          </div>
-                        ))
-                      }
+                      <div className="comandas-pedidos-andamento">
+                        {doingOrders
+                          .sort((a, b) => (a.id > b.id ? 1 : -1))
+                          .map(({id, client_name, table, status, createdAt, Products}) => (
+                            <div className="comandas">
+                              <CardsOrders
+                                id={id}
+                                client={client_name}
+                                table={table}
+                                status={status}
+                                date={createdAt}
+                                ordersProducts = {Products}
+                              />
+                              <button
+                                className="comanda-button"
+                                onClick={() => (console.log(`clicou ${status} ${id}`)) } 
+                              >Alterar Status</button>
+                            </div>
+                          ))
+                        }
+                      </div>
                     
                     </>
                   }

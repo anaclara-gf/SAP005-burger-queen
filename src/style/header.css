@@ -30,21 +30,23 @@ header {
     cursor: pointer;
 }
 
-.label-header {
+.label-header, .notificacao-position {
     background-color: #baa295;
     border-radius: 0.2rem;
     margin: 0.5rem;
     padding: 0.2rem 0.5rem;
-    width: 100px;
     cursor: pointer;
     text-align: center;
+    width: 100px;
+    align-self: center;
 }
 
-.input-header:checked+.label-header {
+.input-header:checked+.label-header, .input-header:checked+.label-header-notificacao {
     background-image: none;
     background-color: #aa3908;
     color: #baa295;
 }
+
 
 .nome-atendente {
     text-align: center;
@@ -55,12 +57,17 @@ header {
 
 .notificacao-pedidos-prontos {
     background-color: #f2bf27;
+    color: black;
     width: 2rem;
     height: 2rem;
     border-radius: 2rem;
     vertical-align: middle;
     line-height: 2rem;
     position: absolute;
-    top: 1%;
-    right: 42.5%;
+    top: -0.8rem;
+    right: -0.5rem;
+}
+
+.notificacao-position {
+    position: relative;
 }
