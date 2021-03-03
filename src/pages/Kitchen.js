@@ -96,13 +96,14 @@ function Kitchen() {
                             client={client_name}
                             table={table}
                             status={status}
-                            date={createdAt}
+                            create={createdAt}
+                            update={createdAt}
                             ordersProducts = {Products}
                           />
                           <button
                             className="comanda-button"
                             onClick={() => handleStatusOrders(id, status, index)} 
-                          >Alterar Status</button>
+                          >Começar Pedido</button>
                         </div>
                         ))
                     }
@@ -122,13 +123,14 @@ function Kitchen() {
                                 client={client_name}
                                 table={table}
                                 status={status}
-                                date={createdAt}
+                                create={createdAt}
+                                update={createdAt}
                                 ordersProducts = {Products}
                               />
                               <button
                                 className="comanda-button"
                                 onClick={() => handleStatusOrders(id, status, index)} 
-                              >Alterar Status</button>
+                              >Pedido Pronto</button>
                             </div>
                           ))
                         }

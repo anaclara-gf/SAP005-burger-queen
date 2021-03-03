@@ -95,7 +95,7 @@ function Done() {
                           onClick={() => {
                             handleStatusOrders(id, status, index)
                           }} 
-                        >Alterar Status</button>
+                        >Pedido Entregue</button>
                       </div>
                     ))
                   }
