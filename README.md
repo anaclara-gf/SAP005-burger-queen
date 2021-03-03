@@ -36,7 +36,7 @@ Além disso, determinou-se quais seriam os critérios de aceitação e as defini
 
 <br/>
 
-<img src="./src/images/burger-queen-readme/historia1-titulo.png" height="20px">
+<img src="./src/images/burger-queen-readme/historia1-titulo.png" height="15px">
 
 #### Critérios de aceitação
 
@@ -51,7 +51,7 @@ Além disso, determinou-se quais seriam os critérios de aceitação e as defini
 
 <br/>
 
-<img src="./src/images/burger-queen-readme/historia2-titulo.png" height="20px">
+<img src="./src/images/burger-queen-readme/historia2-titulo.png" height="15px">
 
 #### Critérios de aceitação
 
@@ -69,7 +69,7 @@ Além disso, determinou-se quais seriam os critérios de aceitação e as defini
 
 <br/>
 
-<img src="./src/images/burger-queen-readme/historia3-titulo.png" height="20px">
+<img src="./src/images/burger-queen-readme/historia3-titulo.png" height="15px">
 
 #### Critérios de aceitação
 
@@ -84,7 +84,7 @@ Além disso, determinou-se quais seriam os critérios de aceitação e as defini
 
 <br/>
 
-<img src="./src/images/burger-queen-readme/historia4-titulo.png" height="20px">
+<img src="./src/images/burger-queen-readme/historia4-titulo.png" height="15px">
 
 #### Critérios de aceitação
 
