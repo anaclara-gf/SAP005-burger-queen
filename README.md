@@ -103,12 +103,11 @@ Por último, nos apresentou os menus que deveriam ser oferecido pelo sistema:
 
 <img src="./src/images/burger-queen-readme/menus.png" height="300px">
 
-<br/>
-<br/>
-
 **Importante:** Os clientes também deveriam poder escolher entre hambúrgueres de carne bovina, frango ou vegetariano e, por um adicional de R$ 1,00, adicionar queijo ou ovo.
 
-<img src="./src/images/burger-queen-readme/menu-adicionais.PNG" height="100px">
+<p align="center">
+  <img src="./src/images/burger-queen-readme/menu-adicionais.PNG" height="100px">
+</p>
 
 ---
 
