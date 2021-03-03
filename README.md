@@ -11,6 +11,12 @@ Aplicação web para o restaurante Acka Burger. A interface auxilia os funcioná
 ## Índice
 
 - [1. Apresentação da Demanda](#1-demanda)
+- [2. Identificação Visual da Marca](#2-design)
+- [3. Aplicação]
+- [4. Teste de Usabilidade]
+- [5. Estrutura e funcionalidades]
+- [6. Considerações Finais]
+- [7. Desenvolvedoras]
 
 ---
 
@@ -25,7 +31,7 @@ Para melhor realização do projeto, o _Product Owner_ nos apresentou quatro his
 <img src="./src/images/burger-queen-readme/historias.png" height="250px">
 
 <br/>
-<br/>
+ 
 
 Além disso, determinou-se quais seriam os critérios de aceitação e as definições de pronto de cada história:
 
@@ -96,8 +102,6 @@ Além disso, determinou-se quais seriam os critérios de aceitação e as defini
 
 Por último, nos apresentou os menus que deveriam ser oferecido pelo sistema:
 
-<br/>
-
 <img src="./src/images/burger-queen-readme/menus.png" height="300px">
 
 <br/>
@@ -105,8 +109,23 @@ Por último, nos apresentou os menus que deveriam ser oferecido pelo sistema:
 
 **Importante:** Os clientes também deveriam poder escolher entre hambúrgueres de carne bovina, frango ou vegetariano e, por um adicional de R$ 1,00, adicionar queijo ou ovo.
 
-<br/>
-
-<img src="./src/images/burger-queen-readme/menu-adicionais.png" height="100px">
+<img src="./src/images/burger-queen-readme/menu-adicionais.PNG" height="100px">
 
 ---
+
+## 2. Identificação Visual da Marca
+
+Iniciamos o desenvolvimento dos protótipos e verificamos a necessidade de uma identificação visual da marca mais intensa. Com isso apresentamos a eles novos logos e uma paleta de cores mais sugestiva ao ramo do empreendimento.
+Como referência para paleta de cores utilizamos o molho barbecue, sempre pensando em trazer cores suaves em grande proporção, deixando mais agradável a visualização por um grande período de tempo.
+
+<p align="center">
+  <img src="./src/images/burger-queen-readme/logos.png" height="200px">
+  <br/>
+  <br/>
+  <img src="./src/images/burger-queen-readme/paleta-cores.png" height="200px">
+</p>
+
+A partir das definições acima começamos o desenvolvimento de protótipos para aprovação do cliente.
+Através de benchmark, verificamos em aplicações já existentes no mercado as funcionalidades mais apropriadas e que facilitariam a utilização, e com isso apresentamos nosso protótipo de alta fidelidade (conforme imagens abaixo), que foi aprovado pelo cliente.
+
+<img src="./src/images/burger-queen-readme/prototipos.png" width="100%">
