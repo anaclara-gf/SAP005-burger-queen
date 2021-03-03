@@ -22,6 +22,7 @@ function PaginaPedidos(){
     const atendente = localStorage.getItem("atendente");
     const role = localStorage.getItem('role');
     const [loading, setLoading] = useState(true);
+    const [radioButton, setRadioButton] = useState(false);
 
     const [menuCafe, setMenuCafe] = useState([]);
     const [menuAlmoco, setMenuAlmoco] = useState([]);
@@ -77,6 +78,10 @@ function PaginaPedidos(){
             })   
         
     }, [token]);
+
+    useEffect(() => {
+      console.log(radioButton)
+    }, [radioButton])
 
     function extras() {
       return (
@@ -228,7 +233,12 @@ function PaginaPedidos(){
                         type="radio"
                         name="menu"
                         defaultChecked
-                        onClick={() => setMenus(true)}
+                        onClick={(event) => {
+                          setMenus(true);
+                          setOpenExtrasBurgerSimples(false);
+                          setOpenExtrasBurgerDuplo(false);
+                          document.querySelector(".button-adicionar").classList.remove("rotate");
+                        }}
                       />
                       <label className="button-menu-escolha" htmlFor="button-cafe-da-manha">Café da Manhã</label>
                       <input 
@@ -417,7 +427,8 @@ function PaginaPedidos(){
                                       .then(response => response.json())
                                       .then(data => {
                                         if(data.id !== undefined){
-                                          console.log(data);
+                                          setIsModalVisible(true);
+                                          setErrorMessage("Seu pedido foi enviado!");
                                           setResumoPedido([]);
                                           document.querySelector(".cliente-resumo-pedido").value = "";
                                         } else {
