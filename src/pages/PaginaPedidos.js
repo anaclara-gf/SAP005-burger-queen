@@ -419,6 +419,7 @@ function PaginaPedidos(){
                                         if(data.id !== undefined){
                                           console.log(data);
                                           setResumoPedido([]);
+                                          setFazerPedido({"client": "", "table": mesa, "products": []})
                                           document.querySelector(".cliente-resumo-pedido").value = "";
                                         } else {
                                           setIsModalVisible(true)
