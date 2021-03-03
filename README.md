@@ -22,10 +22,7 @@ Para melhor realização do projeto, o _Product Owner_ nos apresentou quatro his
 
 <br/> 
 
-<img src="./src/images/burger-queen-readme/historia1.png" height="100px">
-<img src="./src/images/burger-queen-readme/historia2.png" height="100px">
-<img src="./src/images/burger-queen-readme/historia3.png" height="100px">
-<img src="./src/images/burger-queen-readme/historia4.png" height="100px">
+<img src="./src/images/burger-queen-readme/historias.png" height="250px">
 
 <br/>
 <br/>
