@@ -25,7 +25,6 @@ Para melhor realização do projeto, o _Product Owner_ nos apresentou quatro his
 <img src="./src/images/burger-queen-readme/historias.png" height="250px">
 
 <br/>
-<br/>
 
 Além disso, determinou-se quais seriam os critérios de aceitação e as definições de pronto de cada história:
 
