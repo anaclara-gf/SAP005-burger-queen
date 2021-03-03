@@ -28,7 +28,7 @@ Para melhor realização do projeto, o _Product Owner_ nos apresentou quatro his
 
 <br/> 
 
-<img src="./src/images/burger-queen-readme/historias.png" height="250px">
+<img src="./src/images/burger-queen-readme/historias.png" width="100%">
 
 <br/>
 
@@ -101,7 +101,9 @@ Além disso, determinou-se quais seriam os critérios de aceitação e as defini
 
 Por último, nos apresentou os menus que deveriam ser oferecido pelo sistema:
 
-<img src="./src/images/burger-queen-readme/menus.png" height="300px">
+<p align="center">
+  <img src="./src/images/burger-queen-readme/menus.png" height="300px">
+</p>
 
 **Importante:** Os clientes também deveriam poder escolher entre hambúrgueres de carne bovina, frango ou vegetariano e, por um adicional de R$ 1,00, adicionar queijo ou ovo.
 
