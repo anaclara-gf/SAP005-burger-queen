@@ -42,8 +42,6 @@ function Header() {
 
     setTimeout(() => {ordersList(token)},10000)
 
-    // setInterval(() => doneOrders, 1000);
-
     return (
         <>
             <header>
@@ -80,9 +78,14 @@ function Header() {
 
                         <label className="notificacao-position label-header" htmlFor="pedidos-prontos">
                             Pedidos Prontos
-                            <label htmlFor="pedidos-prontos" className="notificacao-pedidos-prontos">
-                                {doneOrders.length > 0 ? doneOrders.length : null}
-                            </label>
+                            {doneOrders.length > 0 ? (
+                                <label htmlFor="pedidos-prontos" className="notificacao-pedidos-prontos">
+                                    {doneOrders.length}
+                                </label>
+                            ) : (
+                                null
+                            )}
+                            
                         </label>
                         
 
