@@ -430,6 +430,7 @@ function PaginaPedidos(){
                                           setIsModalVisible(true);
                                           setErrorMessage("Seu pedido foi enviado!");
                                           setResumoPedido([]);
+                                          setFazerPedido({"client": "", "table": mesa, "products": []})
                                           document.querySelector(".cliente-resumo-pedido").value = "";
                                         } else {
                                           setIsModalVisible(true)

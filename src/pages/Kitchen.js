@@ -17,28 +17,34 @@ function Kitchen() {
   const [errorMessage, setErrorMessage] = useState("");
   const url = "https://lab-api-bq.herokuapp.com/orders";
 
-  useEffect(() => {
+  const ordersList = (token) => {
     const requestOptions = {
-      method: 'GET',
-      headers: { 
-        'Content-Type': 'application/json',
-        'Authorization': `${token}`
-      },
-    };
+          method: 'GET',
+          headers: { 
+            'Content-Type': 'application/json',
+            'Authorization': `${token}`
+          },
+        };
+    
+        fetch('https://lab-api-bq.herokuapp.com/orders', requestOptions)
+          .then(response => response.json())
+          .then(data => {
+            if (data) {
+              const allOrders = data
+              setPendingOrders(allOrders.filter((pedido) => pedido.status.includes("pending")))
+              setDoingOrders(allOrders.filter((pedido) => pedido.status.includes("doing")))
+            }
+            setLoading(false) 
+          })
+  }
+  
+  useEffect(() => {
+    ordersList(token)   
+  }, []);
 
-    fetch('https://lab-api-bq.herokuapp.com/orders', requestOptions)
-      .then(response => response.json())
-      .then(data => {
-        if (data) {
-          const allOrders = data
-          setPendingOrders(allOrders.filter((pedido) => pedido.status.includes("pending")))
-          setDoingOrders(allOrders.filter((pedido) => pedido.status.includes("doing")))
-        }
-        setLoading(false) 
-      })  
-  }, [token]);
-
-    const handleStatusOrders = (id, status, index) => {
+  setTimeout(() => {ordersList(token)},30000)
+  
+  const handleStatusOrders = (id, status, index) => {
       let path = `/${id}`
       let statusChanged = ""
       if (status === "pending") {
@@ -59,12 +65,12 @@ function Kitchen() {
       fetch(`${url}${path}`, requestOptions)
         .then(response => response.json())
         .then((data) => {
-          if(data.id === pendingOrders[index].id) {
+          if(status === "pending" && data.id === pendingOrders[index].id) {
             pendingOrders.splice(index, 1)
             setPendingOrders([...pendingOrders])
             setDoingOrders([...doingOrders, data])
           }
-          if(data.id === doingOrders[index].id){
+          if(status === "doing" && data.id === doingOrders[index].id){
             doingOrders.splice(index, 1)
             setDoingOrders([...doingOrders])
           }
@@ -89,20 +95,21 @@ function Kitchen() {
                   <div className="comandas-pedidos-criados">
                     {pendingOrders
                       .sort((a, b) => (a.id > b.id ? 1 : -1))
-                      .map(({id, client_name, table, status, createdAt, Products}, index) => (
+                      .map(({id, client_name, table, status, createdAt, updatedAt, Products}, index) => (
                         <div className="comandas">
                           <CardsOrders
                             id={id}
                             client={client_name}
                             table={table}
                             status={status}
-                            date={createdAt}
+                            create={createdAt}
+                            update={createdAt}
                             ordersProducts = {Products}
                           />
                           <button
                             className="comanda-button"
                             onClick={() => handleStatusOrders(id, status, index)} 
-                          >Alterar Status</button>
+                          >Começar Pedido</button>
                         </div>
                         ))
                     }
@@ -115,20 +122,21 @@ function Kitchen() {
                       <div className="comandas-pedidos-andamento">
                         {doingOrders
                           .sort((a, b) => (a.id > b.id ? 1 : -1))
-                          .map(({id, client_name, table, status, createdAt, Products}, index) => (
+                          .map(({id, client_name, table, status, createdAt, updatedAt, Products}, index) => (
                             <div className="comandas">
                               <CardsOrders
                                 id={id}
                                 client={client_name}
                                 table={table}
                                 status={status}
-                                date={createdAt}
+                                create={createdAt}
+                                update={createdAt}
                                 ordersProducts = {Products}
                               />
                               <button
                                 className="comanda-button"
                                 onClick={() => handleStatusOrders(id, status, index)} 
-                              >Alterar Status</button>
+                              >Pedido Pronto</button>
                             </div>
                           ))
                         }
