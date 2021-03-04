@@ -185,7 +185,7 @@ Essa troca direta com o usuário final nos possibilitou entender melhor o motivo
 
 ## 5. Ferramentas Utilizadas
 
-Nesse projeto utilizamos além das ferramentas já vistas como, HTML, CSS e JavaScript, o React. 
+Nesse projeto utilizamos, além das ferramentas já vistas como HTML, CSS e JavaScript, o ReactJS. 
 
 Através do React desenvolvemos uma aplicação SPA, onde o usuário não percebe a mudança de página pois não há o loading de atualização. Criamos rotas privadas, que além do acesso ser somente para pessoas cadastradas através da sua função no restaurante você é direcionado e poderá acessar somente as páginas que você tem autorização.
 
