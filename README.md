@@ -153,16 +153,22 @@ Essa é a primeira página que os funcionários do salão tem acesso após o log
 ### 5.3 Pedidos em Andamento (acesso exclusivo aos funcionários da cozinha)
 Essa é a primeira página que os funcionários da cozinha tem acesso após o login. Nela tem duas colunas: uma de pedidos criados e uma de pedidos em andamento. A coluna de pedidos criados exibe todos os pedidos que foram enviados pelos funcionários do salão na página de “Fazer Pedido”, essa coluna é atualizada automaticamente a cada dois minutos para que não haja necessidade dos funcionários da cozinha lembrarem de atualizar a página para ver os novos pedidos. Quando o funcionário da cozinha for iniciar o preparo do pedido, ele deve clicar em “Iniciar pedido”. Nesse momento o pedido passará para a coluna de pedidos em andamento. Quando o pedido estiver pronto para ser entregue para mesa, o funcionário deve clicar em “Pedido pronto”. Então, o pedido sumirá da página da cozinha. 
 
---- gif recebendo o pedido, iniciando e terminando ---
+<p align="center">
+  <img src="./src/images/burger-queen-readme/pedidos-andamento.gif" height="400px">
+</p>
 
 ### 5.4 Pedidos Prontos (acesso exclusivo aos funcionários do salão)
 Essa página pode ser acessada por meio do cabeçalho da aplicação. Nela estarão listados os pedidos que foram marcados como prontos para entrega pela cozinha. Considerando que os funcionários do salão utilizam mais a página de fazer pedidos, o botão do cabeçalho apresenta uma notificação para mostrar quantos pedidos estão prontos e que ainda não foram entregues para as respectivas mesas. Quando o funcionário tiver entregue o pedido para mesa, ele deve clicar em “Pedido entregue”. Nesse momento, o pedido sumirá da página de pedidos prontos. 
 
---- gif acessando a página com notificação e terminando o pedido ---
+<p align="center">
+  <img src="./src/images/burger-queen-readme/pedidos-pronto.gif" height="400px">
+</p>
 
 ### 5.5 Pedidos Entregues (acesso à todos os funcionários)
 Essa página pode ser acessada por meio do cabeçalho da aplicação. Nela estarão listados todos os pedidos que já foram entregues aos clientes do restaurante. Essa é uma página-arquivo para poder ter estatísticas sobre os pedidos no futuro.
 
---- gif rolando todos os pedidos entregues ---
+<p align="center">
+  <img src="./src/images/burger-queen-readme/pedidos-entregue.gif" height="400px">
+</p>
 
 ---
