@@ -146,7 +146,9 @@ A primeira página que os usuários têm acesso é o login. Essa é uma página 
 ### 5.2 Fazer Pedido (acesso exclusivo aos funcionários do salão)
 Essa é a primeira página que os funcionários do salão tem acesso após o login. Nela estão dispostas as vinte mesas disponíveis no restaurante. Para iniciar o pedido, o funcionário deve selecionar a mesa correspondente e, então, ele será redirecionado para a página dos menus. Na página dos menus, o funcionário pode anotar o pedido da mesa adicionando os itens que foram escolhidos pelos clientes. Nesse momento o funcionário tem total liberdade para manipular os itens: ele pode aumentar e diminuir quantidade e excluir itens. Quando os clientes terminarem de escolher tudo, o funcionário pode mandar o pedido para cozinha clicando em “Enviar pedido”. Caso os clientes desistam do pedido, ele pode limpar todos os itens clicando em “Limpar pedido”. 
 
---- gif fazendo pedido ---
+<p align="center">
+  <img src="./src/images/burger-queen-readme/fazer-pedido.gif" height="400px">
+</p>
 
 ### 5.3 Pedidos em Andamento (acesso exclusivo aos funcionários da cozinha)
 Essa é a primeira página que os funcionários da cozinha tem acesso após o login. Nela tem duas colunas: uma de pedidos criados e uma de pedidos em andamento. A coluna de pedidos criados exibe todos os pedidos que foram enviados pelos funcionários do salão na página de “Fazer Pedido”, essa coluna é atualizada automaticamente a cada dois minutos para que não haja necessidade dos funcionários da cozinha lembrarem de atualizar a página para ver os novos pedidos. Quando o funcionário da cozinha for iniciar o preparo do pedido, ele deve clicar em “Iniciar pedido”. Nesse momento o pedido passará para a coluna de pedidos em andamento. Quando o pedido estiver pronto para ser entregue para mesa, o funcionário deve clicar em “Pedido pronto”. Então, o pedido sumirá da página da cozinha. 
