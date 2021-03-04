@@ -36,6 +36,79 @@ Além disso, determinou-se quais seriam os critérios de aceitação e as defini
 
 <br/>
 
+<table>
+<thead>
+<th><img src="./src/images/burger-queen-readme/historia1-titulo.png" height="15px"></th>
+<th><img src="./src/images/burger-queen-readme/historia2-titulo.png" height="15px"></th>
+</thead>
+<tbody>
+<tr>
+<td>
+
+#### Critérios de aceitação
+
+- Criar login e senha.
+- Registar tipo de usuário (cozinha / salão), login e senha.
+- Entrar na tela correta para cada usuário.
+
+#### Definição de pronto
+
+- Você fez _testes_ de usabilidade e incorporou o feedback do usuário.
+- Você deu deploy de seu aplicativo.
+
+<td>
+
+#### Critérios de aceitação
+
+- Anotar o nome e mesa.
+- Adicionar produtos aos pedidos.
+- Excluir produtos.
+- Ver resumo e o total da compra.
+- Enviar o pedido para a cozinha (guardar em algum banco de dados).
+- Funcionar bem e se adequar a um _tablet_.
+
+#### Definição de pronto
+
+- Você fez _testes_ de usabilidade e incorporou o _feedback_ do usuário.
+- Você deu deploy de seu aplicativo.
+
+</tbody>
+
+<thead>
+<th><img src="./src/images/burger-queen-readme/historia3-titulo.png" height="15px"></th>
+<th><img src="./src/images/burger-queen-readme/historia4-titulo.png" height="15px"></th>
+</thead>
+
+<tbody>
+<tr>
+<td>
+
+#### Critérios de aceitação
+
+- Ver os pedidos à medida em que são feitos.
+- Marcar os pedidos que foram preparados e estão prontos para serem servidos.
+- Ver o tempo que levou para preparar o pedido desde que chegou, até ser marcado como concluído.
+
+#### Definição de pronto
+
+- Você fez _testes_ de usabilidade e incorporou o _feedback_ do usuário.
+- Você deu deploy de seu aplicativo.
+
+<td>
+
+#### Critérios de aceitação
+
+- Ver a lista de pedidos prontos para servir.
+- Marque os pedidos que foram entregues.
+
+#### Definição de pronto
+
+- Você fez _testes_ de usabilidade e incorporou o _feedback_ do usuário.
+- Você deu deploy de seu aplicativo.
+- Os dados devem ser mantidos intactos, mesmo depois que um pedido foi terminado. Tudo isso para poder ter estatísticas no futuro.
+
+</table>
+
 <img src="./src/images/burger-queen-readme/historia1-titulo.png" height="15px">
 
 #### Critérios de aceitação
