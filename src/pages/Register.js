@@ -30,9 +30,7 @@ function Register () {
                     setIsModalVisible(true);
                     setErrorMessage(`${data.message}`);
                 } else {
-                    localStorage.setItem("token", data.token);
-                    localStorage.setItem("userId", data.id);
-                    history.push('/Login');
+                    history.push('/');
                 }
             });
     }

@@ -129,3 +129,16 @@ A partir das definições acima começamos o desenvolvimento de protótipos para
 Através de benchmark, verificamos em aplicações já existentes no mercado as funcionalidades mais apropriadas e que facilitariam a utilização, e com isso apresentamos nosso protótipo de alta fidelidade (conforme imagens abaixo), que foi aprovado pelo cliente.
 
 <img src="./src/images/burger-queen-readme/prototipos.png" width="100%">
+
+---
+
+## 5. Estrutura e funcionalidades
+
+A aplicação foi desenvolvida para funcionar em tablets na posição horizontal. Desenvolvemos o produto de modo que ele fosse claro e objetivo para que os funcionários do restaurante pudessem utilizá-lo com facilidade e rapidez. 
+
+### 5.1 Login/Registro (acesso geral)
+A primeira página que os usuários têm acesso é o login. Essa é uma página simples que mostra o logo e o formulário para preencher e-mail e senha. Caso seja a primeira vez do usuário na página, ele tem a opção de fazer o registro clicando no botão logo abaixo do botão “Entrar” ou utilizando o caminho “/register” na URL. Na página de registro, o usuário cria sua conta ao informar seu nome, seu email, seu cargo (funcionário do salão ou da cozinha) e uma senha de no mínimo seis dígitos. Ambas as páginas foram desenvolvidas para informarem o usuário caso aconteça algo errado com seu login ou registro. 
+
+<p align="center">
+  <img src="./src/images/burger-queen-readme/login-registro.gif" height="400px">
+</p>
