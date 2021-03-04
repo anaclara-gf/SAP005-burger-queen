@@ -16,7 +16,7 @@ Aplicação web para o restaurante Acka Burger. A interface auxilia os funcioná
 - [4. Teste de Usabilidade](#4-teste-de-usabilidade)
 - [5. Ferramentas Utilizadas](#5-ferramentas-utilizadas)
 - [6. Considerações Finais](#6-considerações-finais)
-- [7. Desenvolvedoras]
+- [7. Desenvolvedoras](#7-desenvolvedoras)
 
 ---
 
@@ -202,3 +202,12 @@ Para esse projeto a Laboratória nos trouxe uma nova ferramenta para aprendermos
 Queremos agradecer também a confiança depositada em nós para desenvolver esse projeto pelas mentoras, a todas as colegas de caminhada, que muitas vezes nos apoiamos para continuar seguindo em frente, e não menos importante aos nosso familiares e amigos, que nem sempre podem nos ajudar com dicas técnicas mas sempre nos incentivam, nos apoiam e estão dispostos a ouvir nossos desabafos.
 
 ---
+
+## 7. Desenvolvedoras
+
+<table>
+  <tr>
+    <td align="center"><a href="https://github.com/anaclara-gf"><img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/71611075?s=460&u=177acdb4797a91fbe35b5f74053a25c159846d78&v=4" width="100px;" alt=""/><br /><sub><b>Ana Clara Garcia Farah</b></sub></a><br /></td>
+    <td align="center"><a href="https://github.com/kauanaagostini"><img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/71272642?s=460&u=16e95ea294359879e6e99ad563f7e102f0823246&v=4" width="100px;" alt=""/><br /><sub><b>Kauana Maria Agostini</b></sub></a><br /></td>
+  </tr>
+</table>
